@@ -1,3 +1,25 @@
-<p>
-  trips works!
-</p>
+<div class="wrapper">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container cdkColumnDef="name">
+      <mat-header-cell *cdkHeaderCellDef> Trip name </mat-header-cell>
+      <mat-cell *cdkCellDef="let row"> {{ row.name }} </mat-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="dateFrom">
+      <mat-header-cell *cdkHeaderCellDef> Date from </mat-header-cell>
+      <mat-cell *cdkCellDef="let row"> {{ row.dateFrom | date: longDate }} </mat-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="number">
+      <mat-header-cell *cdkHeaderCellDef> Number of employees </mat-header-cell>
+      <mat-cell *cdkCellDef="let row"> {{ row.numberOfEmployees }} </mat-cell>
+    </ng-container>
+
+    <mat-header-row
+      *cdkHeaderRowDef="['name', 'dateFrom', 'number']"
+    ></mat-header-row>
+    <mat-row
+      *cdkRowDef="let row; columns: ['name', 'dateFrom', 'number']"
+    ></mat-row>
+  </table>
+</div>

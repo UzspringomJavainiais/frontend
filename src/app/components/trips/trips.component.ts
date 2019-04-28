@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+const trips = require("../../../mocks/trips.json");
 
 @Component({
   selector: 'app-trips',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trips.component.css']
 })
 export class TripsComponent implements OnInit {
+  dataSource = trips;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
