@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 const trips = require("../../../mocks/trips.json");
 
 @Component({
-  selector: 'app-trips',
-  templateUrl: './trips.component.html',
-  styleUrls: ['./trips.component.css']
+  selector: "app-trips",
+  templateUrl: "./trips.component.html",
+  styleUrls: ["./trips.component.css"]
 })
 export class TripsComponent implements OnInit {
-  dataSource = trips;
+  public dataSource = trips;
+  private clickedId;
 
-  constructor() {
-  }
+  constructor(private router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
+  getTripDetails = (id: number) => {
+    this.router.navigate(['/trip-details', id]);
+  };
 }

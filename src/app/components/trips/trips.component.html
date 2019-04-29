@@ -2,12 +2,19 @@
   <table mat-table [dataSource]="dataSource">
     <ng-container cdkColumnDef="name">
       <mat-header-cell *cdkHeaderCellDef> Trip name </mat-header-cell>
-      <mat-cell *cdkCellDef="let row"> {{ row.name }} </mat-cell>
+      <mat-cell *cdkCellDef="let row"
+        ><a
+          (click)="getTripDetails(row.id)"
+          >{{ row.name }}</a
+        ></mat-cell
+      >
     </ng-container>
 
     <ng-container cdkColumnDef="dateFrom">
       <mat-header-cell *cdkHeaderCellDef> Date from </mat-header-cell>
-      <mat-cell *cdkCellDef="let row"> {{ row.dateFrom | date: longDate }} </mat-cell>
+      <mat-cell *cdkCellDef="let row">
+        {{ row.dateFrom | date: longDate }}
+      </mat-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="number">
