@@ -8,6 +8,7 @@ import {MaterialModule} from './material/material.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TripsComponent } from './components/trips/trips.component';
 import { TripDetailsComponent } from './components/trip-details/trip-details.component';
+import { MyTripsComponent } from './components/my-trips/my-trips.component';
 
 @NgModule({
     declarations: [
@@ -15,6 +16,7 @@ import { TripDetailsComponent } from './components/trip-details/trip-details.com
         NavbarComponent,
         TripsComponent,
         TripDetailsComponent,
+        MyTripsComponent,
       ],
     imports: [
         BrowserModule,

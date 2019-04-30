@@ -1,3 +1,17 @@
-<p>
-  Trip number {{ id }}
-</p>
+<div class="wrapper">
+  <mat-list>
+    <h3 mat-subheader>Trip name</h3>
+    <mat-list-item>
+      <h4 mat-line>{{ trip.name }}</h4>
+    </mat-list-item>
+    <h3 mat-subheader>Date from</h3>
+    <mat-list-item>
+      <h4 mat-line>{{ trip.dateFrom }}</h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <h3 mat-subheader>Employees</h3>
+    <mat-list-item *ngFor="let employee of trip.employees">
+      <h4 mat-line>{{ employee.name }}</h4>
+    </mat-list-item>
+  </mat-list>
+</div>
