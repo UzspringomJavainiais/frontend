@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-const trips = require("../../../mocks/trips.json");
+import { TripsService } from "src/app/trips.service";
 
 @Component({
   selector: 'app-trip-details',
@@ -10,18 +10,21 @@ const trips = require("../../../mocks/trips.json");
 export class TripDetailsComponent implements OnInit {
   id: number;
   private sub: any;
-  public trips = trips;
+  public trips = [];
   public trip: object;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private _tripsService: TripsService) {}
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.id =+ params['id'];
+    this._tripsService.getTrips().subscribe(data => {
+      this.trips = data;
 
-      this.trip = trips.find(trip => trip.id === this.id);
-      console.log(this.trip);
-    })
+      this.sub = this.route.params.subscribe(params => {
+        this.id =+ params['id'];
+  
+        this.trip = this.trips.find(trip => trip.id === this.id);
+      })
+    });
   }
 
 }

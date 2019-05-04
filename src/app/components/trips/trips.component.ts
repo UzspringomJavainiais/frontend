@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-const trips = require("../../../mocks/trips.json");
+import { TripsService } from "src/app/trips.service";
 
 @Component({
   selector: "app-trips",
@@ -8,14 +8,16 @@ const trips = require("../../../mocks/trips.json");
   styleUrls: ["./trips.component.css"]
 })
 export class TripsComponent implements OnInit {
-  public dataSource = trips;
   private clickedId;
+  public trips = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private _tripsService: TripsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._tripsService.getTrips().subscribe(data => (this.trips = data));
+  }
 
   getTripDetails = (id: number) => {
-    this.router.navigate(['/trip-details', id]);
+    this.router.navigate(["/trip-details", id]);
   };
 }
