@@ -4,9 +4,10 @@ import { AppComponent } from './app.component';
 import { TripsComponent } from './components/trip/trips/trips.component';
 import { TripDetailsComponent } from './components/trip/trip-details/trip-details.component';
 import {AllApartmentsComponent} from './components/apartments/all-apartments/all-apartments.component';
-import {AllEmployeesComponent} from './components/employes/all-employees/all-employees.component';
+import {AllEmployeesComponent} from './components/employees/all-employees/all-employees.component';
 import {StatisticsComponent} from './components/statistics/statistics.component';
 import {NewTripComponent} from './components/trip/new-trip/new-trip.component';
+import {RolesComponent} from './components/employees/roles/roles.component';
 
 const routes: Routes = [
     { path: 'trips', component: TripsComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: 'trips/new', component: NewTripComponent },
     { path: 'apartments', component: AllApartmentsComponent},
     { path: 'employees', component: AllEmployeesComponent},
+    { path: 'roles', component: RolesComponent},
     { path: 'statistics', component: StatisticsComponent}
 ];
 

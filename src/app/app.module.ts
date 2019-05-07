@@ -15,12 +15,14 @@ import {AllApartmentsComponent} from './components/apartments/all-apartments/all
 import {ApartmentInfoComponent} from './components/apartments/apartment-info/apartment-info.component';
 import {NewApartmentModalComponent} from './components/apartments/new-apartment-modal/new-apartment-modal.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {AllEmployeesComponent} from './components/employes/all-employees/all-employees.component';
-import {NewEmployeeModalComponent} from './components/employes/new-employee-modal/new-employee-modal.component';
-import {EmployeeInfoComponent} from './components/employes/employee-info/employee-info.component';
-import { StatisticsComponent } from './components/statistics/statistics.component';
+import {AllEmployeesComponent} from './components/employees/all-employees/all-employees.component';
+import {NewEmployeeModalComponent} from './components/employees/new-employee-modal/new-employee-modal.component';
+import {EmployeeInfoComponent} from './components/employees/employee-info/employee-info.component';
+import {StatisticsComponent} from './components/statistics/statistics.component';
 import {ChartsModule} from 'ng2-charts';
-import { NewTripComponent } from './components/trip/new-trip/new-trip.component';
+import {NewTripComponent} from './components/trip/new-trip/new-trip.component';
+import {RolesComponent} from './components/employees/roles/roles.component';
+import {NewRoleModalComponent} from './components/employees/new-role-modal/new-role-modal.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +38,9 @@ import { NewTripComponent } from './components/trip/new-trip/new-trip.component'
         NewEmployeeModalComponent,
         EmployeeInfoComponent,
         StatisticsComponent,
-        NewTripComponent
+        NewTripComponent,
+        RolesComponent,
+        NewRoleModalComponent
     ],
     imports: [
         BrowserModule,
@@ -52,7 +56,8 @@ import { NewTripComponent } from './components/trip/new-trip/new-trip.component'
     bootstrap: [AppComponent],
     entryComponents: [
         NewApartmentModalComponent,
-        NewEmployeeModalComponent]
+        NewEmployeeModalComponent,
+        NewRoleModalComponent]
 })
 export class AppModule {
 }

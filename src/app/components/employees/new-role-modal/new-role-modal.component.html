@@ -1,0 +1,31 @@
+<div mat-dialog-title>
+    Rolės pridėjimas
+</div>
+<form [formGroup]="addRoleForm">
+
+    <div mat-dialog-content style="display: flex; flex-direction: column">
+        <mat-form-field class="w-100">
+            <input matInput
+                   type="text"
+                   placeholder="Rolės pavadinimas"
+                   formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field class="w-100">
+              <textarea matInput
+                        placeholder="Aprašymas"
+                        formControlName="description">
+              </textarea>
+        </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions class="d-flex">
+        <button mat-stroked-button class="" [mat-dialog-close]>
+            Atšaukti
+        </button>
+        <button mat-raised-button color="primary" style="margin-left: 1em" [disabled]="addRoleForm.invalid"
+                (click)="saveRole()">
+            Pridėti rolę
+        </button>
+    </div>
+</form>
