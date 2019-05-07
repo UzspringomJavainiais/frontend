@@ -15,6 +15,11 @@ import {AllApartmentsComponent} from './components/apartments/all-apartments/all
 import {ApartmentInfoComponent} from './components/apartments/apartment-info/apartment-info.component';
 import {NewApartmentModalComponent} from './components/apartments/new-apartment-modal/new-apartment-modal.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {AllEmployeesComponent} from './components/employes/all-employees/all-employees.component';
+import {NewEmployeeModalComponent} from './components/employes/new-employee-modal/new-employee-modal.component';
+import {EmployeeInfoComponent} from './components/employes/employee-info/employee-info.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
     declarations: [
@@ -25,7 +30,11 @@ import {ReactiveFormsModule} from '@angular/forms';
         MyTripsComponent,
         AllApartmentsComponent,
         ApartmentInfoComponent,
-        NewApartmentModalComponent
+        NewApartmentModalComponent,
+        AllEmployeesComponent,
+        NewEmployeeModalComponent,
+        EmployeeInfoComponent,
+        StatisticsComponent
     ],
     imports: [
         BrowserModule,
@@ -34,11 +43,14 @@ import {ReactiveFormsModule} from '@angular/forms';
         MaterialModule,
         AppRoutingModule,
         HttpClientModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        ChartsModule
     ],
     providers: [TripsService],
     bootstrap: [AppComponent],
-    entryComponents: [NewApartmentModalComponent]
+    entryComponents: [
+        NewApartmentModalComponent,
+        NewEmployeeModalComponent]
 })
 export class AppModule {
 }
