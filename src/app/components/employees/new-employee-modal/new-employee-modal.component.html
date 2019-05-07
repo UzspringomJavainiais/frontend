@@ -31,6 +31,13 @@
                    placeholder="Elektroninis paštas"
                    formControlName="email">
         </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Rolės</mat-label>
+            <mat-select formControlName="roles" multiple>
+                <mat-option *ngFor="let role of roles" [value]="role">{{role.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
 
     <div mat-dialog-actions class="d-flex">
@@ -43,3 +50,5 @@
         </button>
     </div>
 </form>
+
+{{addEmployeeForm.value | json}}
