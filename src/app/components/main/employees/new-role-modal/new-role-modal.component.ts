@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ApartmentService} from '../../../_services/apartment.service';
-import {RoleService} from '../../../_services/role.service';
+import {ApartmentService} from '../../../../_services/apartment.service';
+import {RoleService} from '../../../../_services/role.service';
 
 @Component({
     selector: 'app-new-role-modal',

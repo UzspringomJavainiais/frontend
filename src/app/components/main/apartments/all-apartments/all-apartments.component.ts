@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ApartmentService} from '../../../_services/apartment.service';
+import {ApartmentService} from '../../../../_services/apartment.service';
 import {MatDialog} from '@angular/material';
 import {NewApartmentModalComponent} from '../new-apartment-modal/new-apartment-modal.component';
 

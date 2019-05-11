@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ApartmentService} from '../../../_services/apartment.service';
+import {ApartmentService} from '../../../../_services/apartment.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {EmployeeService} from '../../../_services/employee.service';
-import {RoleService} from '../../../_services/role.service';
+import {EmployeeService} from '../../../../_services/employee.service';
+import {RoleService} from '../../../../_services/role.service';
 
 @Component({
     selector: 'app-new-employee-modal',

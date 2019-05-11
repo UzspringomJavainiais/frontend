@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NewRoleModalComponent} from '../new-role-modal/new-role-modal.component';
 import {MatDialog} from '@angular/material';
-import {EmployeeService} from '../../../_services/employee.service';
+import {EmployeeService} from '../../../../_services/employee.service';
 import {NewEmployeeModalComponent} from '../new-employee-modal/new-employee-modal.component';
 
 @Component({
