@@ -11,10 +11,10 @@ export class RoleService {
     }
 
     getAllRoles() {
-        return this.http.get(`${environment.apiUrl}/api/role`);
+        return this.http.get(`${environment.apiUrl}api/role`);
     }
 
     saveRole(role) {
-        return this.http.post(`${environment.apiUrl}/api/role`, role);
+        return this.http.post(`${environment.apiUrl}api/role`, role);
     }
 }

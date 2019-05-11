@@ -11,10 +11,10 @@ export class EmployeeService {
     }
 
     getAllEmployees() {
-        return this.http.get(`${environment.apiUrl}/api/account`);
+        return this.http.get(`${environment.apiUrl}api/account`);
     }
 
     saveEmployees(employee) {
-        return this.http.post(`${environment.apiUrl}/api/account`, employee);
+        return this.http.post(`${environment.apiUrl}api/account`, employee);
     }
 }

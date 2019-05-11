@@ -10,7 +10,7 @@ import {CookieService} from 'ngx-cookie-service';
 })
 export class AuthService implements CanActivate {
 
-    public loggedIn = false;
+    private loggedIn = false;
 
     constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {
     }
@@ -20,9 +20,10 @@ export class AuthService implements CanActivate {
     }
 
     login(username, password) {
-        this.http.post(`${environment.apiUrl}/api/auth/signin`, {username, password})
+        this.http.post(`${environment.apiUrl}api/auth/signin`, {username, password})
             .subscribe((data: any) => {
                     this.cookieService.set('Authorization', data.token);
+                    console.log(this.cookieService.get('Authorization'));
                     this.loggedIn = true;
                     this.router.navigateByUrl('/trips');
                 },
@@ -40,6 +41,11 @@ export class AuthService implements CanActivate {
     }
 
     checkMe() {
-        return this.http.get(`${environment.apiUrl}/api/auth/me`);
+        return this.http.get(`${environment.apiUrl}api/auth/me`);
+    }
+
+    logout() {
+        this.loggedIn = false;
+        return this.http.get(`${environment.apiUrl}api/auth/logout`);
     }
 }

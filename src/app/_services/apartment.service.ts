@@ -11,10 +11,10 @@ export class ApartmentService {
     }
 
     getAllApartments() {
-        return this.http.get(`${environment.apiUrl}/api/apartment`);
+        return this.http.get(`${environment.apiUrl}api/apartment`);
     }
 
     saveApartment(apartment) {
-        return this.http.post(`${environment.apiUrl}/api/apartment`, apartment);
+        return this.http.post(`${environment.apiUrl}api/apartment`, apartment);
     }
 }

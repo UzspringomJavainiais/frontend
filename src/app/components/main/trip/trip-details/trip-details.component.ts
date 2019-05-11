@@ -11,7 +11,7 @@ export class TripDetailsComponent implements OnInit {
   id: number;
   private sub: any;
   public trips = [];
-  public trip: object;
+  public trip: any;
 
   constructor(private route: ActivatedRoute, private _tripsService: TripsService) {}
 
