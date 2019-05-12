@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { TripsComponent } from "../components/trip/trips/trips.component";
-import { TripDetailsComponent } from "../components/trip/trip-details/trip-details.component";
+import { TripsComponent } from "../components/main/trip/trips/trips.component";
+import { TripDetailsComponent } from "../components/main/trip/trip-details/trip-details.component";
 import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from '../app.component';
 

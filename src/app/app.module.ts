@@ -5,24 +5,30 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
-import {NavbarComponent} from './components/navbar/navbar.component';
-import {TripsComponent} from './components/trip/trips/trips.component';
-import {TripDetailsComponent} from './components/trip/trip-details/trip-details.component';
-import {MyTripsComponent} from './components/my-trips/my-trips.component';
+import {NavbarComponent} from './components/main/navbar/navbar.component';
+import {TripsComponent} from './components/main/trip/trips/trips.component';
+import {TripDetailsComponent} from './components/main/trip/trip-details/trip-details.component';
+import {MyTripsComponent} from './components/main/my-trips/my-trips.component';
 import {TripsService} from './trips.service';
-import {HttpClientModule} from '@angular/common/http';
-import {AllApartmentsComponent} from './components/apartments/all-apartments/all-apartments.component';
-import {ApartmentInfoComponent} from './components/apartments/apartment-info/apartment-info.component';
-import {NewApartmentModalComponent} from './components/apartments/new-apartment-modal/new-apartment-modal.component';
-import {ReactiveFormsModule, FormsModule} from '@angular/forms';
-import {AllEmployeesComponent} from './components/employees/all-employees/all-employees.component';
-import {NewEmployeeModalComponent} from './components/employees/new-employee-modal/new-employee-modal.component';
-import {EmployeeInfoComponent} from './components/employees/employee-info/employee-info.component';
-import {StatisticsComponent} from './components/statistics/statistics.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AllApartmentsComponent} from './components/main/apartments/all-apartments/all-apartments.component';
+import {ApartmentInfoComponent} from './components/main/apartments/apartment-info/apartment-info.component';
+import {NewApartmentModalComponent} from './components/main/apartments/new-apartment-modal/new-apartment-modal.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AllEmployeesComponent} from './components/main/employees/all-employees/all-employees.component';
+import {NewEmployeeModalComponent} from './components/main/employees/new-employee-modal/new-employee-modal.component';
+import {EmployeeInfoComponent} from './components/main/employees/employee-info/employee-info.component';
+import {StatisticsComponent} from './components/main/statistics/statistics.component';
 import {ChartsModule} from 'ng2-charts';
-import {NewTripComponent} from './components/trip/new-trip/new-trip.component';
-import {RolesComponent} from './components/employees/roles/roles.component';
-import {NewRoleModalComponent} from './components/employees/new-role-modal/new-role-modal.component';
+import {NewTripComponent} from './components/main/trip/new-trip/new-trip.component';
+import {RolesComponent} from './components/main/employees/roles/roles.component';
+import {NewRoleModalComponent} from './components/main/employees/new-role-modal/new-role-modal.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import {CookieService} from 'ngx-cookie-service';
+import {TokenInterceptor} from './_interceptors/req.interceptor';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { MainComponent } from './components/main/main.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +46,11 @@ import {NewRoleModalComponent} from './components/employees/new-role-modal/new-r
         StatisticsComponent,
         NewTripComponent,
         RolesComponent,
-        NewRoleModalComponent
+        NewRoleModalComponent,
+        AuthComponent,
+        LoginComponent,
+        RegisterComponent,
+        MainComponent
     ],
     imports: [
         BrowserModule,
@@ -53,7 +63,12 @@ import {NewRoleModalComponent} from './components/employees/new-role-modal/new-r
         FormsModule,
         ChartsModule
     ],
-    providers: [TripsService],
+    providers: [CookieService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true
+        }],
     bootstrap: [AppComponent],
     entryComponents: [
         NewApartmentModalComponent,
