@@ -1,3 +1,41 @@
-<p>
-  new-trip works!
-</p>
+<div class="wrapper container">
+  <h1>Create new trip</h1>
+  <mat-form-field>
+    <input [(ngModel)]="name" name="name" matInput placeholder="Name" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      [(ngModel)]="account"
+      name="account"
+      placeholder="Account"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea
+      matInput
+      [(ngModel)]="description"
+      name="description"
+      placeholder="Description"
+    ></textarea>
+  </mat-form-field>
+  <h4>Add items to checklist</h4>
+  <mat-list>
+    <mat-list-item *ngFor="let item of trip.checkListItems">
+      {{ item.name }}
+    </mat-list-item>
+  </mat-list>
+
+  <mat-form-field>
+    <div class="input-block">
+      <input [(ngModel)]="itemName" name="item" matInput placeholder="New item" />
+      <button mat-button (click)="onAddNewItem()" color="primary">
+        Add new item
+      </button>
+    </div>
+  </mat-form-field>
+
+  <button mat-button (click)="onSubmit()" color="primary">Submit</button>
+</div>

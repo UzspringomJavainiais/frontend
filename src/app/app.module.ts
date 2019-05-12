@@ -14,7 +14,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AllApartmentsComponent} from './components/apartments/all-apartments/all-apartments.component';
 import {ApartmentInfoComponent} from './components/apartments/apartment-info/apartment-info.component';
 import {NewApartmentModalComponent} from './components/apartments/new-apartment-modal/new-apartment-modal.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {AllEmployeesComponent} from './components/employees/all-employees/all-employees.component';
 import {NewEmployeeModalComponent} from './components/employees/new-employee-modal/new-employee-modal.component';
 import {EmployeeInfoComponent} from './components/employees/employee-info/employee-info.component';
@@ -50,6 +50,7 @@ import {NewRoleModalComponent} from './components/employees/new-role-modal/new-r
         AppRoutingModule,
         HttpClientModule,
         ReactiveFormsModule,
+        FormsModule,
         ChartsModule
     ],
     providers: [TripsService],
