@@ -9,7 +9,6 @@ import {NavbarComponent} from './components/main/navbar/navbar.component';
 import {TripsComponent} from './components/main/trip/trips/trips.component';
 import {TripDetailsComponent} from './components/main/trip/trip-details/trip-details.component';
 import {MyTripsComponent} from './components/main/my-trips/my-trips.component';
-import {TripsService} from './trips.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AllApartmentsComponent} from './components/main/apartments/all-apartments/all-apartments.component';
 import {ApartmentInfoComponent} from './components/main/apartments/apartment-info/apartment-info.component';
@@ -23,12 +22,12 @@ import {ChartsModule} from 'ng2-charts';
 import {NewTripComponent} from './components/main/trip/new-trip/new-trip.component';
 import {RolesComponent} from './components/main/employees/roles/roles.component';
 import {NewRoleModalComponent} from './components/main/employees/new-role-modal/new-role-modal.component';
-import { AuthComponent } from './components/auth/auth.component';
-import { LoginComponent } from './components/auth/login/login.component';
+import {AuthComponent} from './components/auth/auth.component';
+import {LoginComponent} from './components/auth/login/login.component';
 import {CookieService} from 'ngx-cookie-service';
 import {TokenInterceptor} from './_interceptors/req.interceptor';
-import { RegisterComponent } from './components/auth/register/register.component';
-import { MainComponent } from './components/main/main.component';
+import {RegisterComponent} from './components/auth/register/register.component';
+import {MainComponent} from './components/main/main.component';
 
 @NgModule({
     declarations: [
@@ -68,7 +67,8 @@ import { MainComponent } from './components/main/main.component';
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,
             multi: true
-        }],
+        }
+    ],
     bootstrap: [AppComponent],
     entryComponents: [
         NewApartmentModalComponent,
