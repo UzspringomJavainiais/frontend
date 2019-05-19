@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { TripService } from "src/app/_services/trip.service";
 import { Trip } from "../../../../models/trip";
-import { AccountService } from "src/app/_services/account.service";
+import { EmployeeService } from "src/app/_services/employee.service";
 
 @Component({
   selector: "app-new-trip",
@@ -28,11 +28,11 @@ export class NewTripComponent implements OnInit {
 
   constructor(
     private tripService: TripService,
-    private accountService: AccountService
+    private employeeService: EmployeeService
   ) {}
 
   ngOnInit() {
-    this.accountService.getAccounts().subscribe(data => {
+    this.employeeService.getAllEmployees().subscribe(data => {
       this.accounts = data;
       console.log(this.account);
     });
