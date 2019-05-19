@@ -7,12 +7,13 @@ import { Trip } from '../models/trip';
     providedIn: 'root'
 })
 export class TripService {
-    url = '/api/trip';
+    url = 'http://localhost:8080/api/trip';
 
     constructor(private http: HttpClient) {
     }
 
     createTrip(trip): Observable<Trip> {
+        console.log(trip);
         return this.http.post<Trip>(this.url, trip);
     }
 }

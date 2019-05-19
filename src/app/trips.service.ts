@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: "root"
 })
 export class TripsService {
-  private _url: string = "/assets/mocks/trips.json";
+  private _url: string = "http://localhost:8080/api/trip";
 
   constructor(private http: HttpClient) {}
 
