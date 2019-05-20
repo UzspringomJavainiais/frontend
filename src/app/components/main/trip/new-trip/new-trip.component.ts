@@ -9,22 +9,16 @@ import { EmployeeService } from "src/app/_services/employee.service";
   styleUrls: ["./new-trip.component.css"]
 })
 export class NewTripComponent implements OnInit {
-  public accounts;
+  public employees;
   public trip: Trip = {
     name: "",
-    // account: [
-    //   {
-    //     name: ""
-    //   }
-    // ],
+    accounts: [],
     description: "",
-    checkListItems: [{ name: "", isChecked: false, price: null }]
+    dateFrom: new Date(),
+    dateUntil: new Date(),
+    checkListItems: [{ name: null, isChecked: null, price: null }]
   };
   item = { name: "", isChecked: false, price: null };
-  public name: string;
-  public itemName: string;
-  public account: string;
-  public description: string;
 
   constructor(
     private tripService: TripService,
@@ -33,26 +27,26 @@ export class NewTripComponent implements OnInit {
 
   ngOnInit() {
     this.employeeService.getAllEmployees().subscribe(data => {
-      this.accounts = data;
-      console.log(this.account);
+      this.employees = data;
+      console.log(this.employees);
     });
   }
 
   onSubmit() {
-    // this.trip = {
-    //   name: "labas",
-    //   description: "NAXUI"
-    // };
+    console.log(this.trip);
+    this.trip.checkListItems.shift();
     this.tripService.createTrip(this.trip).subscribe(data => console.log(data));
   }
 
+  selectEmployee(id: never) {
+    this.trip.accounts.push(id);
+  }
+
   onAddNewItem() {
-    this.item = {
-      name: this.itemName,
-      isChecked: false,
-      price: 0
-    };
+    if (!this.item.name && !this.item.price) {
+      return 0;
+    }
+
     this.trip.checkListItems.push(this.item);
-    this.itemName = "";
   }
 }

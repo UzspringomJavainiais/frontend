@@ -1,1 +1,4 @@
+<mat-list role="list">
+    <mat-list-item *ngFor="let employee of employees">{{ employee.name }} - {{ employee.email }}</mat-list-item>
+  </mat-list>
 <button mat-raised-button (click)="openAddNewEmployeeModal()">Add new employee</button>

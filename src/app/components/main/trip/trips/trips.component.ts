@@ -11,10 +11,10 @@ export class TripsComponent implements OnInit {
   private clickedId;
   public trips = [];
 
-  constructor(private router: Router, private _tripsService: TripsService) {}
+  constructor(private router: Router, private tripsService: TripsService) {}
 
   ngOnInit() {
-    this._tripsService.getTrips().subscribe(data => (this.trips = data));
+    this.tripsService.getTrips().subscribe(data => (this.trips = data));
   }
 
   getTripDetails = (id: number) => {
