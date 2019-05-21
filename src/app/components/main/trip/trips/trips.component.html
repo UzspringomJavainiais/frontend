@@ -1,34 +1,45 @@
-<div class="background"></div>
-<div class="wrapper">
-  <table mat-table [dataSource]="trips">
+<div style="display: flex; justify-content: flex-end">
+    <button mat-raised-button color="primary" routerLink="/trips/new">create new trip</button>
+</div>
+<table mat-table [dataSource]="trips" *ngIf="trips?.length">
     <ng-container cdkColumnDef="name">
-      <mat-header-cell *cdkHeaderCellDef> Trip name </mat-header-cell>
-      <mat-cell *cdkCellDef="let row"
-        ><a (click)="getTripDetails(row.id)">{{ row.name }}</a></mat-cell
-      >
+        <mat-header-cell *cdkHeaderCellDef>
+            Trip name
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let row">
+            <a>{{ row?.name }}</a>
+        </mat-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="dateFrom">
-      <mat-header-cell *cdkHeaderCellDef> Date from </mat-header-cell>
-      <mat-cell *cdkCellDef="let row">
-        {{ row.dateFrom | date: longDate }}
-      </mat-cell>
+        <mat-header-cell *cdkHeaderCellDef> Date from</mat-header-cell>
+        <mat-cell *cdkCellDef="let row">
+            {{ row?.dateFrom | date: longDate }}
+        </mat-cell>
     </ng-container>
+
+    <ng-container cdkColumnDef="dateTo">
+        <mat-header-cell *cdkHeaderCellDef> Date to</mat-header-cell>
+        <mat-cell *cdkCellDef="let row">
+            {{ row?.dateTo | date: longDate }}
+        </mat-cell>
+    </ng-container>
+
 
     <ng-container cdkColumnDef="number">
-      <mat-header-cell *cdkHeaderCellDef>
-        Number of employees
-      </mat-header-cell>
-      <mat-cell *cdkCellDef="let row"> {{ row.accounts.length }} </mat-cell>
+        <mat-header-cell *cdkHeaderCellDef>
+            Number of employees
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let row"> {{ row?.accounts?.length }} </mat-cell>
     </ng-container>
 
-    <mat-header-row
-      *cdkHeaderRowDef="['name', 'dateFrom', 'number']"
-    ></mat-header-row>
-    <mat-row
-      *cdkRowDef="let row; columns: ['name', 'dateFrom', 'number']"
-    ></mat-row>
-  </table>
-</div>
+    <mat-header-row *cdkHeaderRowDef="['name', 'dateFrom', 'dateTo', 'number']"></mat-header-row>
+    <mat-row *cdkRowDef="let row; columns: ['name', 'dateFrom', 'dateTo', 'number']"
+             (click)="getTripDetails(row.id)"></mat-row>
+</table>
+<h3 *ngIf="!trips?.length">There is no trips</h3>
 
-<button mat-raised-button color="primary" routerLink="/trips/new">create new trip</button>
+
+
+
+

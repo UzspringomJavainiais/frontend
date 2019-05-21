@@ -1,83 +1,87 @@
-<div class="wrapper container">
-  <h1>Create new trip</h1>
-  <mat-form-field>
-    <input [(ngModel)]="trip.name" name="name" matInput placeholder="Name" />
-  </mat-form-field>
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>Create new trip</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <h4>General info</h4>
 
-  <mat-form-field>
-    <textarea
-      matInput
-      [(ngModel)]="trip.description"
-      name="description"
-      placeholder="Description"
-    ></textarea>
-  </mat-form-field>
+        <mat-form-field>
+            <input [(ngModel)]="trip.name" matInput placeholder="Name"/>
+        </mat-form-field>
 
-  <h4>Dates</h4>
-  <div class="input-block">
-    <mat-form-field>
-      <input
-        matInput
-        [matDatepicker]="picker1"
-        placeholder="Select start data"
-        [(ngModel)]="trip.dateFrom"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-      <mat-datepicker #picker1></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field>
-      <input
-        matInput
-        [matDatepicker]="picker2"
-        placeholder="Select end date"
-        [(ngModel)]="trip.dateUntil"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
-    </mat-form-field>
-  </div>
+        <mat-form-field>
+            <textarea matInput
+                      [(ngModel)]="trip.description"
+                      name="description"
+                      placeholder="Description"></textarea>
+        </mat-form-field>
 
-  <h4>Select employees to go to this trip</h4>
-  <mat-selection-list>
-    <mat-list-option
-      *ngFor="let employee of employees"
-      (click)="selectEmployee(employee.id)"
-    >
-      {{ employee.firstName }} {{ employee.lastName }} - email:
-      {{ employee.email }}
-    </mat-list-option>
-  </mat-selection-list>
+        <h4>Dates</h4>
+        <div class="input-block">
+            <mat-form-field>
+                <input matInput
+                       [matDatepicker]="picker1"
+                       placeholder="Select start data"
+                       [(ngModel)]="trip.dateFrom"/>
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput
+                       [matDatepicker]="picker2"
+                       placeholder="Select end date"
+                       [(ngModel)]="trip.dateTo"/>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+        </div>
 
-  <h4>Add items to checklist</h4>
-  <mat-list>
-    <mat-list-item *ngFor="let item of trip.checkListItems">
-      {{ item.name }} - {{ item.price }}
-    </mat-list-item>
-  </mat-list>
+        <h4>Select employees to go to this trip</h4>
+        <mat-selection-list>
+            <mat-list-option *ngFor="let employee of employees"
+                             (click)="selectEmployee(employee.id)">
+                {{ employee.firstName }} {{ employee.lastName }} - email:  {{ employee.email }}
+            </mat-list-option>
+        </mat-selection-list>
 
-  <mat-form-field>
-    <div class="input-block">
-      <input
-        [(ngModel)]="item.name"
-        name="item"
-        matInput
-        placeholder="New item"
-      />
-    </div>
-  </mat-form-field>
-  <mat-form-field>
-    <input
-      matInput
-      maxlength="9"
-      placeholder="Price"
-      [(ngModel)]="item.price"
-    />
-    <span matPrefix>$&nbsp;</span>
-  </mat-form-field>
-  <button mat-button (click)="onAddNewItem()" color="primary">
-    Add new item
-  </button>
-  <hr />
+        <h4>Checklist items</h4>
+        <mat-list>
+            <mat-list-item *ngFor="let item of trip.checklistItems">
+                <h4 matLine>{{ item?.name }}</h4>
+                <p matLine>Price: {{ item?.price }}</p>
+            </mat-list-item>
 
-  <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
-</div>
+            <mat-list-item *ngIf="trips?.checklistItems?.length === 0">
+                There is no checklist items. Add one.
+            </mat-list-item>
+        </mat-list>
+
+        <div class="add-checklistitem">
+            <mat-form-field>
+                <div class="input-block">
+                    <input [(ngModel)]="item.name"
+                           matInput
+                           placeholder="New item"/>
+                </div>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput
+                       maxlength="9"
+                       placeholder="Price"
+                       [(ngModel)]="item.price"/>
+            </mat-form-field>
+
+            <button mat-stroked-button="" (click)="onAddNewItem()" color="primary" style="margin-right: 5px;">
+                Add new item
+            </button>
+        </div>
+
+
+    </mat-card-content>
+
+    <mat-card-actions style="display: flex; justify-content: flex-end">
+
+        <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+    </mat-card-actions>
+</mat-card>

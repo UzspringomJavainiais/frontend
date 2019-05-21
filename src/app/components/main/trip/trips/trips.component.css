@@ -13,3 +13,9 @@ table {
   height: 100px;
   background-size: cover;
 }
+
+/deep/ mat-row:hover {
+  cursor: pointer;
+  background: #f0f0f0;
+  transition: 0.4s;
+}
