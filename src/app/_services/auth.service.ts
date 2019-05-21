@@ -31,20 +31,13 @@ export class AuthService implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         return true;
-        // if (this.isLoggedIn()) {
-        //     return true;
-        // } else {
-        //     this.router.navigate(['auth', 'login']);
-        //     return false;
-        // }
     }
 
     checkMe() {
-        return this.http.get(`${environment.apiUrl}api/auth/me`);
+        return this.http.get(`${environment.apiUrl}api/me`);
     }
 
     logout() {
-        this.loggedIn = false;
-        return this.http.get(`${environment.apiUrl}api/auth/logout`);
+        return this.http.get(`${environment.apiUrl}logout`);
     }
 }

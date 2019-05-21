@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
     styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+    public me: any;
     constructor(private authService: AuthService, private router: Router) {
     }
 
@@ -16,7 +17,7 @@ export class NavbarComponent implements OnInit {
 
     checkMe() {
         this.authService.checkMe()
-            .subscribe(data => console.log('my info: ', data));
+            .subscribe(data => this.me = data);
     }
 
     logout() {

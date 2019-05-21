@@ -8,6 +8,11 @@
   <button class="ml-a" mat-raised-button (click)="checkMe()">check me </button>
   <button mat-raised-button (click)="logout()">logout</button>
 
+  <div style="color: white; display: flex; flex-direction: column; font-size: smaller">
+    <div>{{me?.username}}</div>
+    <div *ngFor="let role of me?.roles">{{role}}</div>
+  </div>
+
   <li class="li-avatar">
     <img
       class="avatar"
