@@ -1,45 +1,53 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { EmployeeService } from 'src/app/_services/employee.service';
-import { RoleService } from 'src/app/_services/role.service';
+import { Component, OnInit, Inject } from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { EmployeeService } from "src/app/_services/employee.service";
+import { RoleService } from "src/app/_services/role.service";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { Employee } from "../../../../models/Employee";
 
 @Component({
-  selector: 'app-employee-edit-modal',
-  templateUrl: './employee-edit-modal.component.html',
-  styleUrls: ['./employee-edit-modal.component.css']
+  selector: "app-employee-edit-modal",
+  templateUrl: "./employee-edit-modal.component.html",
+  styleUrls: ["./employee-edit-modal.component.css"]
 })
 export class EmployeeEditModalComponent implements OnInit {
-  public addEmployeeForm: FormGroup;
+  public editEmployeeForm: FormGroup;
+  public selectedEmployee: Employee;
   public roles: any;
+  id: number;
 
-  constructor(private employeeService: EmployeeService,
-              private fb: FormBuilder,
-              private roleService: RoleService) {
+  constructor(
+    private employeeService: EmployeeService,
+    private fb: FormBuilder,
+    private roleService: RoleService,
+    public dialogRef: MatDialogRef<EmployeeEditModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.selectedEmployee = data;
   }
 
   ngOnInit() {
-      this.addEmployeeForm = this.fb.group({
-          firstName: ['', Validators.required],
-          lastName: ['', Validators.required],
-          password: ['', Validators.required],
-          email: ['', Validators.required],
-          roles: ['', Validators.required]
-      });
-
-      this.getRoles();
+    this.editEmployeeForm = this.fb.group({
+      id: [this.selectedEmployee.id],
+      firstName: [this.selectedEmployee.firstName, Validators.required],
+      lastName: [this.selectedEmployee.lastName, Validators.required],
+      password: ["", Validators],
+      email: [this.selectedEmployee.email, Validators.required],
+      roles: ["", Validators.required]
+    });
+    this.getRoles();
   }
 
   saveEmployee() {
-      const employee = this.addEmployeeForm.value;
-      employee.roleIds = employee.roles.map(role => role.id);
-      console.log('pridedamas: ', employee);
-      this.employeeService.saveEmployees(employee)
-          .subscribe(data => console.log('saved employee'));
+    const employee = this.editEmployeeForm.value;
+    employee.roleIds = employee.roles.map(role => role.id);
+    console.log("išsaugomas: ", employee);
+    this.employeeService
+      .editEmployee(employee)
+      .subscribe(data => console.log("Edited employee"));
   }
 
   private getRoles() {
-      this.roleService.getAllRoles()
-          .subscribe(data => this.roles = data);
+    this.roleService.getAllRoles().subscribe(data => (this.roles = data));
   }
-
 }

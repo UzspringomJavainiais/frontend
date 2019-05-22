@@ -3,7 +3,8 @@ import { NewRoleModalComponent } from "../new-role-modal/new-role-modal.componen
 import { MatDialog } from "@angular/material";
 import { EmployeeService } from "../../../../_services/employee.service";
 import { NewEmployeeModalComponent } from "../new-employee-modal/new-employee-modal.component";
-import { EmployeeEditModalComponent } from '../employee-edit-modal/employee-edit-modal.component';
+import { EmployeeEditModalComponent } from "../employee-edit-modal/employee-edit-modal.component";
+import { Employee } from "../../../../models/Employee";
 
 @Component({
   selector: "app-all-employees",
@@ -11,7 +12,8 @@ import { EmployeeEditModalComponent } from '../employee-edit-modal/employee-edit
   styleUrls: ["./all-employees.component.css"]
 })
 export class AllEmployeesComponent implements OnInit {
-  public employees: any;
+  public employees: Employee[];
+  public selectedEmployee: Employee;
 
   constructor(
     private matDialog: MatDialog,
@@ -30,12 +32,20 @@ export class AllEmployeesComponent implements OnInit {
   private getEmployees() {
     this.employeeService.getAllEmployees().subscribe(data => {
       this.employees = data;
-      console.log(this.employees);
     });
   }
 
   editEmployee(id) {
-    const matDialogRef = this.matDialog.open(EmployeeEditModalComponent);
-    matDialogRef.afterClosed().subscribe(data => this.getEmployees());
+    this.getSelectedEmployee(id);
+  }
+
+  getSelectedEmployee(id) {
+    this.employeeService.getAllEmployees().subscribe(data => {
+      this.selectedEmployee = data.find(data => data.id === id);
+      const matDialogRef = this.matDialog.open(EmployeeEditModalComponent, {
+        data: this.selectedEmployee
+      });
+      matDialogRef.afterClosed().subscribe(data => this.getEmployees());
+    });
   }
 }

@@ -24,4 +24,8 @@ export class EmployeeService {
         return this.http.get(`${environment.apiUrl}api/account/${employeeId}/trips`);
     }
 
+    editEmployee(employee) {
+        return this.http.put(`${environment.apiUrl}api/account/${employee.id}`, employee);
+    }
+
 }
