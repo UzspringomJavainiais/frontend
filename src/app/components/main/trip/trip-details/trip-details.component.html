@@ -1,33 +1,44 @@
 <mat-card class="example-card">
-    <mat-card-header>
-        <mat-card-title>Create new trip</mat-card-title>
-    </mat-card-header>
-    <mat-list>
-        <h3 mat-subheader>Trip name</h3>
-        <mat-list-item>
-          <h4 mat-line>{{ trip.name }}</h4>
-        </mat-list-item>
-        <h3 mat-subheader>Description</h3>
-        <mat-list-item>
-          <h4 mat-line>{{ trip.description }}</h4>
-        </mat-list-item>
-        <h3 mat-subheader>Date from</h3>
+  <mat-card-header>
+    <mat-card-title>Trip details</mat-card-title>
+  </mat-card-header>
+  <mat-list>
+    <h3 mat-subheader>Trip name</h3>
+    <mat-list-item>
+      <h4 mat-line>{{ trip.name }}</h4>
+    </mat-list-item>
+    <h3 mat-subheader>Description</h3>
+    <mat-list-item>
+      <h4 mat-line>{{ trip.description }}</h4>
+    </mat-list-item>
+    <div class="dates-group">
+      <div>
+        <h3 mat-subheader>Start date</h3>
         <mat-list-item>
           <h4 mat-line>{{ trip.dateFrom }}</h4>
         </mat-list-item>
-        <mat-divider></mat-divider>
-        <h3 mat-subheader>Employees</h3>
-        <mat-list-item *ngFor="let account of trip.accounts">
-          <h4 mat-line>{{ account.firstName }} {{ account.lastName }} - {{ account.email }}</h4>
+      </div>
+      <div>
+        <h3 mat-subheader>End date</h3>
+        <mat-list-item>
+          <h4 mat-line>{{ trip.dateFrom }}</h4>
         </mat-list-item>
-        <mat-divider></mat-divider>
-        <h3 mat-subheader>Checklist Items</h3>
-        <mat-list-item *ngFor="let checklistItem of trip.checklistItems">
-          <h4 mat-line>{{ checklistItem.name }} - {{ checklistItem.price }} €</h4>
-        </mat-list-item>
-      </mat-list>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <h3 mat-subheader>Employees</h3>
+    <mat-list-item *ngFor="let account of trip.accounts">
+      <h4 mat-line>
+        {{ account.firstName }} {{ account.lastName }} - {{ account.email }}
+      </h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <h3 mat-subheader>Checklist Items</h3>
+    <mat-list-item *ngFor="let checklistItem of trip.checklistItems">
+      <h4 mat-line>{{ checklistItem.name }} - {{ checklistItem.price }} €</h4>
+    </mat-list-item>
+  </mat-list>
 </mat-card>
-
 
 <!-- <div class="wrapper">
   <mat-list>
