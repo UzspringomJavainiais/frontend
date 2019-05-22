@@ -33,6 +33,6 @@
   ></mat-header-row>
   <mat-row
     *cdkRowDef="let row; columns: ['firstName', 'lastName', 'email']"
-    (click)="getEmployeeDetails(row.id)"
+    (click)="editEmployee(row.id)"
   ></mat-row>
 </table>

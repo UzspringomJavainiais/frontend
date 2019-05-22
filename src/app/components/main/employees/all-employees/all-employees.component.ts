@@ -3,6 +3,7 @@ import { NewRoleModalComponent } from "../new-role-modal/new-role-modal.componen
 import { MatDialog } from "@angular/material";
 import { EmployeeService } from "../../../../_services/employee.service";
 import { NewEmployeeModalComponent } from "../new-employee-modal/new-employee-modal.component";
+import { EmployeeEditModalComponent } from '../employee-edit-modal/employee-edit-modal.component';
 
 @Component({
   selector: "app-all-employees",
@@ -31,5 +32,10 @@ export class AllEmployeesComponent implements OnInit {
       this.employees = data;
       console.log(this.employees);
     });
+  }
+
+  editEmployee(id) {
+    const matDialogRef = this.matDialog.open(EmployeeEditModalComponent);
+    matDialogRef.afterClosed().subscribe(data => this.getEmployees());
   }
 }
