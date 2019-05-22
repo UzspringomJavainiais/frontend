@@ -17,7 +17,7 @@ export class NewTripComponent implements OnInit {
         description: '',
         dateFrom: new Date(),
         dateTo: new Date(),
-        checklistItems: [{name: null, isChecked: null, price: null}]
+        checklistItems: []
     };
 
     item: any = {name: null, isChecked: null, price: null};

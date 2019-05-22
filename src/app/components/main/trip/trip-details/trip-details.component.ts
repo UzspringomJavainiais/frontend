@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TripsService } from 'src/app/trips.service';
-import { EmployeeService } from 'src/app/_services/employee.service';
-import { Employee } from '../../../../models/Employee';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { TripsService } from "src/app/trips.service";
+import { EmployeeService } from "src/app/_services/employee.service";
+import { Employee } from "../../../../models/Employee";
 
 @Component({
-  selector: 'app-trip-details',
-  templateUrl: './trip-details.component.html',
-  styleUrls: ['./trip-details.component.css']
+  selector: "app-trip-details",
+  templateUrl: "./trip-details.component.html",
+  styleUrls: ["./trip-details.component.css"]
 })
 export class TripDetailsComponent implements OnInit {
   public trip: any;
@@ -19,9 +19,11 @@ export class TripDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-      this.route.params.subscribe(params => {
-          this.tripsService.getTripById(+params.id)
-              .subscribe(data => this.trip = data);
+    this.route.params.subscribe(params => {
+      this.tripsService.getTripById(+params.id).subscribe(data => {
+        this.trip = data;
+        console.log(data);
       });
+    });
   }
 }
