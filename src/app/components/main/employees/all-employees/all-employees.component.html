@@ -1,4 +1,38 @@
-<mat-list role="list">
-    <mat-list-item *ngFor="let employee of employees">{{ employee.name }} - {{ employee.email }}</mat-list-item>
-  </mat-list>
-<button mat-raised-button (click)="openAddNewEmployeeModal()">Add new employee</button>
+<div style="display: flex; justify-content: flex-end">
+  <button mat-raised-button (click)="openAddNewEmployeeModal()">
+    Add new employee
+  </button>
+</div>
+<table mat-table [dataSource]="employees" *ngIf="employees?.length">
+  <ng-container cdkColumnDef="firstName">
+    <mat-header-cell *cdkHeaderCellDef>
+      First name
+    </mat-header-cell>
+    <mat-cell *cdkCellDef="let row">
+      <a>{{ row?.firstName }}</a>
+    </mat-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="lastName">
+    <mat-header-cell *cdkHeaderCellDef>
+      Last name
+    </mat-header-cell>
+    <mat-cell *cdkCellDef="let row">
+      <a>{{ row?.lastName }}</a>
+    </mat-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="email">
+    <mat-header-cell *cdkHeaderCellDef>
+      Email
+    </mat-header-cell>
+    <mat-cell *cdkCellDef="let row">
+      <a>{{ row?.email }}</a>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row
+    *cdkHeaderRowDef="['firstName', 'lastName', 'email']"
+  ></mat-header-row>
+  <mat-row
+    *cdkRowDef="let row; columns: ['firstName', 'lastName', 'email']"
+    (click)="getEmployeeDetails(row.id)"
+  ></mat-row>
+</table>
