@@ -33,7 +33,7 @@ export class EmployeeEditModalComponent implements OnInit {
       lastName: [this.selectedEmployee.lastName, Validators.required],
       password: ["", Validators],
       email: [this.selectedEmployee.email, Validators.required],
-      roles: ["", Validators.required]
+      roles: ["", Validators]
     });
     this.getRoles();
   }
