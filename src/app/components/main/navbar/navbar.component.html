@@ -1,16 +1,19 @@
 <ul>
-  <li><button mat-button routerLink="/trips">Trips</button></li>
+  <li><button mat-button routerLink="/trips">All trips</button></li>
+  <li><button mat-button routerLink="/trips">My trips</button></li>
   <li><button mat-button routerLink="/apartments">Apartments</button></li>
   <li><button mat-button routerLink="/employees">Employees (users)</button></li>
   <li><button mat-button routerLink="/roles">Roles</button></li>
   <li><button mat-button routerLink="/statistics">Statistics</button></li>
 
-  <button class="ml-a" mat-raised-button (click)="checkMe()">check me </button>
+  <button class="ml-a" mat-raised-button (click)="checkMe()">check me</button>
   <button mat-raised-button (click)="logout()">logout</button>
 
-  <div style="color: white; display: flex; flex-direction: column; font-size: smaller">
-    <div>{{me?.username}}</div>
-    <div *ngFor="let role of me?.roles">{{role}}</div>
+  <div
+    style="color: white; display: flex; flex-direction: column; font-size: smaller"
+  >
+    <div>{{ me?.username }}</div>
+    <div *ngFor="let role of me?.roles">{{ role }}</div>
   </div>
 
   <li class="li-avatar">
