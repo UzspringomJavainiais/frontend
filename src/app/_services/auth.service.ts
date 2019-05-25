@@ -29,7 +29,6 @@ export class AuthService implements CanActivate {
     checkMe() {
         return this.http.get(`${environment.apiUrl}api/me`).pipe(tap((data) => {
             this.me = data;
-            console.log(data)
         }));
     }
 

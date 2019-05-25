@@ -1,56 +1,57 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, Observable } from "rxjs";
-import { Trip } from "../models/trip";
-import { environment } from "../../environments/environment";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {Trip} from '../models/trip';
+import {environment} from '../../environments/environment';
 
 @Injectable({
-  providedIn: "root"
+    providedIn: 'root'
 })
 export class TripService {
-  public tripRequests: any;
+    public tripRequests: any;
 
-  getMyOrganisedTrips(): Observable<Trip[]> {
-    return this.http.get<Trip[]>(`${environment.apiUrl}api/me/trips`);
-  }
+    getMyOrganisedTrips(): Observable<Trip[]> {
+        return this.http.get<Trip[]>(`${environment.apiUrl}api/me/trips`);
+    }
 
-  getTripById(id: number): Observable<Trip> {
-    return this.http.get<Trip>(`${environment.apiUrl}api/trip/${id}`);
-  }
-  constructor(private http: HttpClient) {
-    this.tripRequests = new BehaviorSubject(null);
-    this.getTripRequests();
-  }
+    getTripById(id: number): Observable<Trip> {
+        return this.http.get<Trip>(`${environment.apiUrl}api/trip/${id}`);
+    }
 
-  createTrip(trip): Observable<Trip> {
-    return this.http.post<Trip>(`${environment.apiUrl}api/trip`, trip);
-  }
+    constructor(private http: HttpClient) {
+        this.tripRequests = new BehaviorSubject(null);
+        this.getTripRequests();
+    }
 
-  getTrips(): Observable<Trip[]> {
-    return this.http.get<Trip[]>(`${environment.apiUrl}api/trip`);
-  }
+    createTrip(trip): Observable<Trip> {
+        return this.http.post<Trip>(`${environment.apiUrl}api/trip`, trip);
+    }
 
-  getTripsCsv() {
-    return this.http.get<Blob>(`${environment.apiUrl}api/tripsInfo/csv`, {
-      responseType: "blob" as "json"
-    });
-  }
+    getTrips(): Observable<Trip[]> {
+        return this.http.get<Trip[]>(`${environment.apiUrl}api/trip`);
+    }
 
-  myPendingTripRequests() {
-    return this.http.get(`${environment.apiUrl}api/myPendingRequests`);
-  }
+    getTripsCsv() {
+        return this.http.get<Blob>(`${environment.apiUrl}api/tripsInfo/csv`, {
+            responseType: 'blob' as 'json'
+        });
+    }
 
-  myPendingRequestsByTripId(id) {
-    return this.http.get(`${environment.apiUrl}api/tripRequests/${id}`);
-  }
+    myPendingTripRequests() {
+        return this.http.get(`${environment.apiUrl}api/myPendingRequests`);
+    }
 
-  patchTripRequest(patchDto) {
-    return this.http.patch(`${environment.apiUrl}api/tripRequests`, patchDto);
-  }
+    myPendingRequestsByTripId(id) {
+        return this.http.get(`${environment.apiUrl}api/tripRequests/${id}`);
+    }
 
-  getTripRequests() {
-    this.myPendingTripRequests().subscribe(data => {
-      this.tripRequests.next(data);
-    });
-  }
+    patchTripRequest(patchDto) {
+        return this.http.patch(`${environment.apiUrl}api/tripRequests`, patchDto);
+    }
+
+    getTripRequests() {
+        this.myPendingTripRequests().subscribe(data => {
+            this.tripRequests.next(data);
+        });
+    }
 }
