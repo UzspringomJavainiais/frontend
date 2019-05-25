@@ -1,26 +1,53 @@
 <ul>
-  <li><button mat-button routerLink="/trips" *ngIf="haveRole('ROLE_ADMIN')">All trips</button></li>
-  <li><button mat-button routerLink="/trips" *ngIf="haveRole('ROLE_USER')">My trips</button></li>
-  <li><button mat-button routerLink="/apartments" *ngIf="haveRole('ROLE_ADMIN')">Apartments</button></li>
-  <li><button mat-button routerLink="/employees" *ngIf="haveRole('ROLE_ADMIN')">Employees (users)</button></li>
-  <li><button mat-button routerLink="/roles" *ngIf="haveRole('ROLE_ADMIN')">Roles</button></li>
-  <li><button mat-button routerLink="/statistics" *ngIf="haveRole('ROLE_ADMIN')">Statistics</button></li>
+    <li>
+        <button mat-button routerLink="/trips" *ngIf="haveRole('ROLE_ADMIN')">All trips</button>
+    </li>
+    <li>
+        <button mat-button routerLink="/trips" *ngIf="haveRole('ROLE_USER')">My trips</button>
+    </li>
+    <li>
+        <button mat-button routerLink="/apartments" *ngIf="haveRole('ROLE_ADMIN')">Apartments</button>
+    </li>
+    <li>
+        <button mat-button routerLink="/employees" *ngIf="haveRole('ROLE_ADMIN')">Employees (users)</button>
+    </li>
+    <li>
+        <button mat-button routerLink="/roles" *ngIf="haveRole('ROLE_ADMIN')">Roles</button>
+    </li>
+    <li>
+        <button mat-button routerLink="/statistics" *ngIf="haveRole('ROLE_ADMIN')">Statistics</button>
+    </li>
 
-  <button class="ml-a" mat-raised-button (click)="checkMe()">check me</button>
-  <button mat-raised-button (click)="logout()">logout</button>
 
-  <div
-    style="color: white; display: flex; flex-direction: column; font-size: smaller"
-  >
-    <div>{{ me?.username }}</div>
-    <div *ngFor="let role of me?.roles">{{ role }}</div>
-  </div>
+    <div style="color: white; display: flex; flex-direction: column; font-size: smaller; margin-left: auto;">
+        <div>{{ me?.username }}</div>
+        <div *ngIf="haveRole('ROLE_ADMIN')"><i>Administratorius</i></div>
+        <div *ngIf="!haveRole('ROLE_ADMIN') && haveRole('ROLE_USER')"><i>Vartotojas</i></div>
+    </div>
 
-  <li class="li-avatar">
-    <img
-      class="avatar"
-      src="https://www.w3schools.com/howto/img_avatar.png"
-      alt="avatar"
-    />
-  </li>
+    <li class="li-avatar">
+        <img class="avatar"
+             src="https://www.w3schools.com/howto/img_avatar.png"
+             alt="avatar"/>
+    </li>
+
+
+    <button mat-button [matMenuTriggerFor]="menu">
+        <span [matBadge]="pendingRequests?.length !== 0 ? pendingRequests?.length : ''"
+              matBadgeOverlap="false"
+              style="margin-right: 15px; color: white">Pranešimai</span>
+    </button>
+
+    <mat-menu #menu="matMenu">
+        <div *ngFor="let request of pendingRequests ">
+            <div mat-menu-item style="display: flex; flex-direction: column" [routerLink]="['/trip-details', request.trip.id]">
+                Kelionei "{{request.trip.name}}" reikalingas patvirtinimas.
+            </div>
+        </div>
+    </mat-menu>
+
+
+    <mat-icon class="material-icons" (click)="logout()" style="margin: 0 20px; color: white;">
+        power_settings_new
+    </mat-icon>
 </ul>
