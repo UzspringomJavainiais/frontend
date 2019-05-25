@@ -28,6 +28,7 @@ import { TokenInterceptor } from "./_interceptors/req.interceptor";
 import { RegisterComponent } from "./components/auth/register/register.component";
 import { MainComponent } from "./components/main/main.component";
 import { EmployeeEditModalComponent } from "./components/main/employees/employee-edit-modal/employee-edit-modal.component";
+import { MyOrganisedTripsComponent } from './components/main/trip/my-organised-trips/my-organised-trips.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { EmployeeEditModalComponent } from "./components/main/employees/employee
     LoginComponent,
     RegisterComponent,
     MainComponent,
-    EmployeeEditModalComponent
+    EmployeeEditModalComponent,
+    MyOrganisedTripsComponent
   ],
   imports: [
     BrowserModule,

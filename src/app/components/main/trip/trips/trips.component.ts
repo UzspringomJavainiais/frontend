@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { TripsService } from "src/app/trips.service";
+import { TripService } from "src/app/_services/trip.service";
 import { EmployeeService } from "../../../../_services/employee.service";
 
 @Component({
@@ -14,12 +14,12 @@ export class TripsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private tripsService: TripsService,
+    private tripService: TripService,
     private employeeService: EmployeeService
   ) {}
 
   ngOnInit() {
-    this.tripsService.getTrips().subscribe(data => (this.trips = data));
+    this.tripService.getTrips().subscribe(data => (this.trips = data));
 
     this.employeeService
       .getMyTrips(2)
