@@ -9,10 +9,12 @@ import {Router} from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
     public me: any;
+
     constructor(private authService: AuthService, private router: Router) {
     }
 
     ngOnInit() {
+        this.checkMe();
     }
 
     checkMe() {
@@ -27,5 +29,10 @@ export class NavbarComponent implements OnInit {
                 },
                 () => this.router.navigateByUrl('auth')
             );
+    }
+
+    haveRole(role) {
+        if (!this.me || !this.me.roles) { return false; }
+        return this.me.roles.findIndex(item => item === role) >= 0;
     }
 }
