@@ -8,7 +8,6 @@ import { MaterialModule } from "./material/material.module";
 import { NavbarComponent } from "./components/main/navbar/navbar.component";
 import { TripsComponent } from "./components/main/trip/trips/trips.component";
 import { TripDetailsComponent } from "./components/main/trip/trip-details/trip-details.component";
-import { MyTripsComponent } from "./components/main/my-trips/my-trips.component";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AllApartmentsComponent } from "./components/main/apartments/all-apartments/all-apartments.component";
 import { ApartmentInfoComponent } from "./components/main/apartments/apartment-info/apartment-info.component";
@@ -29,6 +28,7 @@ import { RegisterComponent } from "./components/auth/register/register.component
 import { MainComponent } from "./components/main/main.component";
 import { EmployeeEditModalComponent } from "./components/main/employees/employee-edit-modal/employee-edit-modal.component";
 import { MyOrganisedTripsComponent } from './components/main/trip/my-organised-trips/my-organised-trips.component';
+import { MyTripsComponent } from './components/main/trip/my-trips/my-trips.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,6 @@ import { MyOrganisedTripsComponent } from './components/main/trip/my-organised-t
     NavbarComponent,
     TripsComponent,
     TripDetailsComponent,
-    MyTripsComponent,
     AllApartmentsComponent,
     ApartmentInfoComponent,
     NewApartmentModalComponent,
@@ -51,7 +50,8 @@ import { MyOrganisedTripsComponent } from './components/main/trip/my-organised-t
     RegisterComponent,
     MainComponent,
     EmployeeEditModalComponent,
-    MyOrganisedTripsComponent
+    MyOrganisedTripsComponent,
+    MyTripsComponent
   ],
   imports: [
     BrowserModule,

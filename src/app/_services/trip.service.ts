@@ -1,18 +1,28 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import {environment} from '../../environments/environment';
+import { BehaviorSubject, Observable } from "rxjs";
 import { Trip } from "../models/trip";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: "root"
 })
 export class TripService {
+  public tripRequests: any;
 
-  constructor(private http: HttpClient) {}
+  getMyOrganisedTrips(): Observable<Trip[]> {
+    return this.http.get<Trip[]>(`${environment.apiUrl}api/me/trips`);
+  }
+
+  getTripById(id: number): Observable<Trip> {
+    return this.http.get<Trip>(`${environment.apiUrl}api/trip/${id}`);
+  }
+  constructor(private http: HttpClient) {
+    this.tripRequests = new BehaviorSubject(null);
+    this.getTripRequests();
+  }
 
   createTrip(trip): Observable<Trip> {
-    console.log(trip);
     return this.http.post<Trip>(`${environment.apiUrl}api/trip`, trip);
   }
 
@@ -20,11 +30,27 @@ export class TripService {
     return this.http.get<Trip[]>(`${environment.apiUrl}api/trip`);
   }
 
-  getMyOrganisedTrips(): Observable<Trip[]> {
-    return this.http.get<Trip[]>(`${environment.apiUrl}api/me/trips`);
+  getTripsCsv() {
+    return this.http.get<Blob>(`${environment.apiUrl}api/tripsInfo/csv`, {
+      responseType: "blob" as "json"
+    });
   }
 
-  getTripById(id: number):Observable<Trip> {
-    return this.http.get<Trip>(`${environment.apiUrl}api/trip/${id}`);
+  myPendingTripRequests() {
+    return this.http.get(`${environment.apiUrl}api/myPendingRequests`);
+  }
+
+  myPendingRequestsByTripId(id) {
+    return this.http.get(`${environment.apiUrl}api/tripRequests/${id}`);
+  }
+
+  patchTripRequest(patchDto) {
+    return this.http.patch(`${environment.apiUrl}api/tripRequests`, patchDto);
+  }
+
+  getTripRequests() {
+    this.myPendingTripRequests().subscribe(data => {
+      this.tripRequests.next(data);
+    });
   }
 }

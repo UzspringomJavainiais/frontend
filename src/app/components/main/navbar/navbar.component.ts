@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../_services/auth.service';
 import {Router} from '@angular/router';
+import {TripService} from '../../../_services/trip.service';
 
 @Component({
     selector: 'app-navbar',
@@ -9,10 +10,17 @@ import {Router} from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
     public me: any;
-    constructor(private authService: AuthService, private router: Router) {
+    public pendingRequests: any;
+
+    constructor(private authService: AuthService,
+                private tripService: TripService,
+                private router: Router) {
     }
 
     ngOnInit() {
+        this.checkMe();
+        this.tripService.tripRequests
+            .subscribe((data) => this.pendingRequests = data);
     }
 
     checkMe() {
@@ -27,5 +35,13 @@ export class NavbarComponent implements OnInit {
                 },
                 () => this.router.navigateByUrl('auth')
             );
+    }
+
+
+    haveRole(role) {
+        if (!this.me || !this.me.roles) {
+            return false;
+        }
+        return this.me.roles.findIndex(item => item === role) >= 0;
     }
 }

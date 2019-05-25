@@ -28,14 +28,18 @@ export class NewTripComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.employeeService.getAllEmployees().subscribe(data => {
+        this.employeeService.getAllEmployees()
+            .subscribe(data => {
             this.employees = data;
         });
+
+
     }
 
     onSubmit() {
         this.tripService.createTrip(this.trip)
             .subscribe(data => {
+                this.tripService.getTripRequests();
                 this.router.navigateByUrl('/trips');
             });
     }
