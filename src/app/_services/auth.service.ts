@@ -4,26 +4,19 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {CookieService} from 'ngx-cookie-service';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService implements CanActivate {
-
-    private loggedIn = false;
-
+    public me: any;
     constructor(private http: HttpClient, private router: Router) {
-    }
-
-    isLoggedIn() {
-        return this.loggedIn;
     }
 
     login(username, password) {
         this.http.post(`${environment.apiUrl}api/auth/signin`, {username, password})
             .subscribe((data: any) => {
-                    console.log(data);
-                    this.loggedIn = true;
                     this.router.navigateByUrl('/trips');
                 },
                 () => console.log('error'));
@@ -34,10 +27,13 @@ export class AuthService implements CanActivate {
     }
 
     checkMe() {
-        return this.http.get(`${environment.apiUrl}api/me`);
+        return this.http.get(`${environment.apiUrl}api/me`).pipe(tap((data) => {
+            this.me = data;
+            console.log(data)
+        }));
     }
 
     logout() {
-        return this.http.get(`${environment.apiUrl}logout`);
+        return this.http.post(`${environment.apiUrl}api/auth/logout`, null);
     }
 }
