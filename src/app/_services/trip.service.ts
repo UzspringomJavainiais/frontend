@@ -18,9 +18,17 @@ export class TripService {
     return this.http.get<Trip[]>(`${environment.apiUrl}api/me/trips`);
   }
 
+  mergeTrips(trips) {
+    return this.http.post(
+      `${environment.apiUrl}api/trip/merge/${trips[0]}&${trips[1]}`,
+      null
+    );
+  }
+
   getTripById(id: number): Observable<Trip> {
     return this.http.get<Trip>(`${environment.apiUrl}api/trip/${id}`);
   }
+
   constructor(private http: HttpClient) {
     this.tripRequests = new BehaviorSubject(null);
     this.getTripRequests();
@@ -41,27 +49,20 @@ export class TripService {
   }
 
   myPendingTripRequests() {
-    return this.http.get(`${environment.apiUrl}api/myPendingRequests`);
+    return this.http.get(`${environment.apiUrl}api/me/pendingRequests`);
   }
 
   myPendingRequestsByTripId(id) {
-    return this.http.get(`${environment.apiUrl}api/tripRequests/${id}`);
+    return this.http.get(`${environment.apiUrl}api/trip/requests/${id}`);
   }
 
   patchTripRequest(patchDto) {
-    return this.http.patch(`${environment.apiUrl}api/tripRequests`, patchDto);
+    return this.http.patch(`${environment.apiUrl}api/trip/requests`, patchDto);
   }
 
   getTripRequests() {
     this.myPendingTripRequests().subscribe(data => {
       this.tripRequests.next(data);
     });
-  }
-
-  mergeTrips(trips) {
-    return this.http.post(
-      `${environment.apiUrl}api/trip/merge/${trips[0]}&${trips[1]}`,
-      null
-    );
   }
 }

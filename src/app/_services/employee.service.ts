@@ -27,4 +27,8 @@ export class EmployeeService {
     editEmployee(employee) {
         return this.http.put(`${environment.apiUrl}api/account/${employee.id}`, employee);
     }
+
+    checkIfEmployeeFree(accountId, dateFrom, dateTo) {
+        return this.http.get(`${environment.apiUrl}api/account/${accountId}/isAccountFree?dateStart=${dateFrom}&dateEnd=${dateTo}`);
+    }
 }

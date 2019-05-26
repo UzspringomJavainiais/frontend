@@ -23,6 +23,7 @@ h4 {
 .add-checklistitem {
   display: flex;
   width: 100%;
+  align-items: center;
 }
 
 .add-checklistitem > * {
