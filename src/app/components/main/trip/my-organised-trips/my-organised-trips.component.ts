@@ -15,6 +15,7 @@ export class MyOrganisedTripsComponent implements OnInit {
   ngOnInit() {
     this.tripService.getMyOrganisedTrips().subscribe(trips => {
       this.trips = trips;
+      console.log(this.trips);
     });
   }
 

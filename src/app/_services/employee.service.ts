@@ -27,9 +27,4 @@ export class EmployeeService {
     editEmployee(employee) {
         return this.http.put(`${environment.apiUrl}api/account/${employee.id}`, employee);
     }
-
-    // checkEmployeeFree(employeeId)
-    //
-    // return this.http.ge
-
 }
