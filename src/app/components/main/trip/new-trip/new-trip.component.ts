@@ -61,6 +61,7 @@ export class NewTripComponent implements OnInit {
 
     checkEmployees() {
         this.employees.forEach(employee => {
+
             this.employeeService.checkIfEmployeeFree(employee.id, this.tripForm.value.dateFrom.toISOString(), this.tripForm.value.dateTo.toISOString())
                 .subscribe(data => {
                     employee.isFree = data;

@@ -38,15 +38,15 @@ export class TripService {
     }
 
     myPendingTripRequests() {
-        return this.http.get(`${environment.apiUrl}api/myPendingRequests`);
+        return this.http.get(`${environment.apiUrl}api/me/pendingRequests`);
     }
 
     myPendingRequestsByTripId(id) {
-        return this.http.get(`${environment.apiUrl}api/tripRequests/${id}`);
+        return this.http.get(`${environment.apiUrl}api/trip/requests/${id}`);
     }
 
     patchTripRequest(patchDto) {
-        return this.http.patch(`${environment.apiUrl}api/tripRequests`, patchDto);
+        return this.http.patch(`${environment.apiUrl}api/trip/requests`, patchDto);
     }
 
     getTripRequests() {

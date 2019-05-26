@@ -35,12 +35,10 @@
     </ng-container>
   
     <mat-header-row
-      *cdkHeaderRowDef="['name', 'dateFrom', 'dateTo', 'number']"
-    ></mat-header-row>
+      *cdkHeaderRowDef="['name', 'dateFrom', 'dateTo', 'number']"></mat-header-row>
     <mat-row
       *cdkRowDef="let row; columns: ['name', 'dateFrom', 'dateTo', 'number']"
-      (click)="getTripDetails(row.id)"
-    ></mat-row>
+      (click)="getTripDetails(row.id)"></mat-row>
   </table>
   <h3 *ngIf="!trips?.length">There is no trips</h3>
   
