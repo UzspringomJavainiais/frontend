@@ -14,6 +14,10 @@ export class TripService {
     return this.http.get<Trip[]>(`${environment.apiUrl}api/me/trips`);
   }
 
+  getMyTrips(): Observable<Trip[]> {
+    return this.http.get<Trip[]>(`${environment.apiUrl}api/me/trips`);
+  }
+
   getTripById(id: number): Observable<Trip> {
     return this.http.get<Trip>(`${environment.apiUrl}api/trip/${id}`);
   }
@@ -52,5 +56,12 @@ export class TripService {
     this.myPendingTripRequests().subscribe(data => {
       this.tripRequests.next(data);
     });
+  }
+
+  mergeTrips(trips) {
+    return this.http.post(
+      `${environment.apiUrl}api/trip/merge/${trips[0]}&${trips[1]}`,
+      null
+    );
   }
 }

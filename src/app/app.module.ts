@@ -29,6 +29,7 @@ import { MainComponent } from "./components/main/main.component";
 import { EmployeeEditModalComponent } from "./components/main/employees/employee-edit-modal/employee-edit-modal.component";
 import { MyOrganisedTripsComponent } from './components/main/trip/my-organised-trips/my-organised-trips.component';
 import { MyTripsComponent } from './components/main/trip/my-trips/my-trips.component';
+import { MergeTripsModalComponent } from './components/main/trip/merge-trips-modal/merge-trips-modal.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MyTripsComponent } from './components/main/trip/my-trips/my-trips.compo
     MainComponent,
     EmployeeEditModalComponent,
     MyOrganisedTripsComponent,
-    MyTripsComponent
+    MyTripsComponent,
+    MergeTripsModalComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,8 @@ import { MyTripsComponent } from './components/main/trip/my-trips/my-trips.compo
     NewApartmentModalComponent,
     NewEmployeeModalComponent,
     NewRoleModalComponent,
-    EmployeeEditModalComponent
+    EmployeeEditModalComponent,
+    MergeTripsModalComponent
   ]
 })
 export class AppModule {}

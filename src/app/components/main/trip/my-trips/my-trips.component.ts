@@ -13,7 +13,7 @@ export class MyTripsComponent implements OnInit {
   constructor(private router: Router, private tripService: TripService) {}
 
   ngOnInit() {
-    this.tripService.getMyOrganisedTrips().subscribe(trips => {
+    this.tripService.getMyTrips().subscribe(trips => {
       this.trips = trips;
     });
   }

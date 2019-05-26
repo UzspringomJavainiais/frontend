@@ -5,6 +5,9 @@
   <button mat-raised-button color="primary" routerLink="/trips/new">
     create new trip
   </button>
+  <button mat-raised-button (click)="mergeTrips()" color="primary">
+    Merge trips
+  </button>
 </div>
 <table mat-table [dataSource]="trips" *ngIf="trips?.length">
   <ng-container cdkColumnDef="name">
