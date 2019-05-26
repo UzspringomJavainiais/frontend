@@ -29,6 +29,7 @@ import { MainComponent } from "./components/main/main.component";
 import { EmployeeEditModalComponent } from "./components/main/employees/employee-edit-modal/employee-edit-modal.component";
 import { MyOrganisedTripsComponent } from './components/main/trip/my-organised-trips/my-organised-trips.component';
 import { MyTripsComponent } from './components/main/trip/my-trips/my-trips.component';
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { MyTripsComponent } from './components/main/trip/my-trips/my-trips.compo
     MainComponent,
     EmployeeEditModalComponent,
     MyOrganisedTripsComponent,
-    MyTripsComponent
+    MyTripsComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +63,8 @@ import { MyTripsComponent } from './components/main/trip/my-trips/my-trips.compo
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    FileUploadModule,
   ],
   providers: [
     CookieService,

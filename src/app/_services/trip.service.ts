@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpEventType} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Trip} from '../models/trip';
 import {environment} from '../../environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -53,5 +54,29 @@ export class TripService {
         this.myPendingTripRequests().subscribe(data => {
             this.tripRequests.next(data);
         });
+    }
+
+    uploadTripFile(tripId: number, file: any): Observable<void> {
+        // Instantiate a FormData to store form fields and encode the file
+        let body = new FormData();
+        // Add file content to prepare the request
+        body.append("file", file);
+        return this.http.post<any>(`${environment.apiUrl}api/trip/${tripId}/addFile`, body, {
+            reportProgress: true,
+            observe: 'events'
+        })
+        .pipe(
+            map((event) => {
+                switch (event.type) {
+                    case HttpEventType.UploadProgress:
+                        const progress = Math.round(100 * event.loaded / event.total);
+                        return { status: 'progress', message: progress };
+                    case HttpEventType.Response:
+                        return event.body;
+                    default:
+                        return `Unhandled event: ${event.type}`;
+                }
+            })
+        );
     }
 }
