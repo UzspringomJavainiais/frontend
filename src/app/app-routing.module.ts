@@ -13,6 +13,7 @@ import {RegisterComponent} from './components/auth/register/register.component';
 import {AuthService} from './_services/auth.service';
 import { MyTripsComponent } from './components/main/trip/my-trips/my-trips.component';
 import { MyOrganisedTripsComponent } from './components/main/trip/my-organised-trips/my-organised-trips.component';
+import { EditTripComponent } from './components/main/trip/edit-trip/edit-trip.component';
 
 const routes: Routes = [
     {
@@ -23,6 +24,7 @@ const routes: Routes = [
             {path: 'trips', component: TripsComponent},
             {path: 'trip-details/:id', component: TripDetailsComponent},
             {path: 'trips/new', component: NewTripComponent},
+            {path: 'trips/edit/:id', component: EditTripComponent},
             {path: 'apartments', component: AllApartmentsComponent},
             {path: 'employees', component: AllEmployeesComponent},
             {path: 'roles', component: RolesComponent},

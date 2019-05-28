@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container > * {
+    width: 100%;
+  }
+  
+  /* .input-block {
+    display: flex;
+  } */
+  
+  mat-form-field {
+    margin: 10px;
+  }
+  
+  h4 {
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+  }
+  
+  .add-checklistitem {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .add-checklistitem > * {
+    flex-grow: 1;
+  }

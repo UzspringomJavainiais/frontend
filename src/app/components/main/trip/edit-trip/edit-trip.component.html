@@ -1,0 +1,94 @@
+<mat-card class="example-card">
+  <mat-card-header>
+      <mat-card-title>Edit trip</mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="tripForm">
+
+      <mat-card-content>
+          <h4>General info</h4>
+
+          <mat-form-field>
+              <input formControlName="name" matInput placeholder="Name"/>
+          </mat-form-field>
+
+          <mat-form-field>
+          <textarea matInput
+                    formControlName="description"
+                    name="description"
+                    placeholder="Description"></textarea>
+          </mat-form-field>
+
+          <h4>Dates</h4>
+          <div class="input-block">
+              <mat-form-field>
+                  <input matInput
+                         [matDatepicker]="picker1"
+                         placeholder="Select start data"
+                         formControlName="dateFrom"/>
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                  <input matInput
+                         [matDatepicker]="picker2"
+                         placeholder="Select end date"
+                         formControlName="dateTo"/>
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+          </div>
+
+          <h4>Select employees to go to this trip</h4>
+          <mat-selection-list #employee>
+              <mat-list-option *ngFor="let employee of employees"
+                               (click)="selectEmployee(employee.id)">
+                  <h4 matLine>{{ employee.firstName }} {{ employee.lastName }} - email:  {{ employee.email }}</h4>
+                  <p matLine>{{employee.isFree ? 'employee is free' : 'employee is not free'}} </p>
+
+              </mat-list-option>
+          </mat-selection-list>
+
+          <h4>Checklist items</h4>
+          <mat-list formArrayName="checklistItems">
+              <mat-list-item *ngFor="let item of checklistItemsList.controls; let i = index;">
+                  <h4 matLine>{{ item.value.name }}</h4>
+                  <p matLine>Price: {{ item.value.price }}</p>
+              </mat-list-item>
+
+              <mat-list-item *ngIf="checklistItemsList?.controls?.length === 0">
+                  There is no checklist items. Add one.
+              </mat-list-item>
+          </mat-list>
+      </mat-card-content>
+  </form>
+
+  <div class="add-checklistitem">
+      <mat-form-field>
+          <div class="input-block">
+              <input [(ngModel)]="item.name"
+                     matInput
+                     placeholder="New item"/>
+          </div>
+      </mat-form-field>
+
+      <mat-form-field>
+          <input matInput
+                 maxlength="9"
+                 placeholder="Price"
+                 type="number"
+                 [(ngModel)]="item.price"/>
+      </mat-form-field>
+
+      <button mat-stroked-button (click)="onAddNewItem()" color="primary" style="margin-right: 5px;">
+          Add new item
+      </button>
+  </div>
+
+
+  <mat-card-actions style="display: flex; justify-content: flex-end">
+
+      <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+  </mat-card-actions>
+</mat-card>
+
+<button (click)="checkEmployees()">opaa</button>

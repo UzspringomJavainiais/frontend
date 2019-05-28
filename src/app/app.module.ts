@@ -30,6 +30,7 @@ import { EmployeeEditModalComponent } from "./components/main/employees/employee
 import { MyOrganisedTripsComponent } from './components/main/trip/my-organised-trips/my-organised-trips.component';
 import { MyTripsComponent } from './components/main/trip/my-trips/my-trips.component';
 import { MergeTripsModalComponent } from './components/main/trip/merge-trips-modal/merge-trips-modal.component';
+import { EditTripComponent } from './components/main/trip/edit-trip/edit-trip.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { MergeTripsModalComponent } from './components/main/trip/merge-trips-mod
     EmployeeEditModalComponent,
     MyOrganisedTripsComponent,
     MyTripsComponent,
-    MergeTripsModalComponent
+    MergeTripsModalComponent,
+    EditTripComponent
   ],
   imports: [
     BrowserModule,
