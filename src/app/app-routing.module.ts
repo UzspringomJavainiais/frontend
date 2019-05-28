@@ -12,12 +12,14 @@ import {MainComponent} from './components/main/main.component';
 import {RegisterComponent} from './components/auth/register/register.component';
 import {AuthService} from './_services/auth.service';
 import { MyTripsComponent } from './components/main/trip/my-trips/my-trips.component';
+import { MyOrganisedTripsComponent } from './components/main/trip/my-organised-trips/my-organised-trips.component';
 
 const routes: Routes = [
     {
         path: '', component: MainComponent, canActivate: [AuthService], children: [
             {path: '', component: TripsComponent},
             {path: 'my-trips', component: MyTripsComponent},
+            {path: 'my-organised-trips', component: MyOrganisedTripsComponent},
             {path: 'trips', component: TripsComponent},
             {path: 'trip-details/:id', component: TripDetailsComponent},
             {path: 'trips/new', component: NewTripComponent},

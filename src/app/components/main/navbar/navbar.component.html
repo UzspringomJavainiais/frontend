@@ -6,6 +6,9 @@
         <button mat-button routerLink="/my-trips" *ngIf="haveRole('ROLE_USER')">My trips</button>
     </li>
     <li>
+        <button mat-button routerLink="/my-organised-trips" *ngIf="haveRole('ROLE_ADMIN')">My organised trips</button>
+    </li>
+    <li>
         <button mat-button routerLink="/apartments" *ngIf="haveRole('ROLE_ADMIN')">Apartments</button>
     </li>
     <li>

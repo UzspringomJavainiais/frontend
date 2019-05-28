@@ -11,7 +11,7 @@ export class TripService {
   public tripRequests: any;
 
   getMyOrganisedTrips(): Observable<Trip[]> {
-    return this.http.get<Trip[]>(`${environment.apiUrl}api/me/organising`);
+    return this.http.get<Trip[]>(`${environment.apiUrl}api/me/organizing`);
   }
 
   getMyTrips(): Observable<Trip[]> {
