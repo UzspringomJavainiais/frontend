@@ -10,6 +10,10 @@ import { environment } from "../../environments/environment";
 export class TripService {
   public tripRequests: any;
 
+  editTrip(trip): Observable<Trip[]> {
+    return this.http.put<Trip[]>(`${environment.apiUrl}api/trip/${trip.id}`, trip);
+  }
+
   getMyOrganisedTrips(): Observable<Trip[]> {
     return this.http.get<Trip[]>(`${environment.apiUrl}api/me/organizing`);
   }

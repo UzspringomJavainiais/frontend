@@ -52,12 +52,11 @@ export class EditTripComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.tripService.getTripById(+params.id).subscribe(data => {
         this.trip = data;
-        console.log(this.trip);
 
         this.trip.checklistItems.map(item => {
           this.checklistItemsList.push(
             this.fb.group({
-              name: [item.name],
+              name: [item.name? item.name : "", Validators.required],
               price: [item.price ? item.price : "", Validators.required]
             })
           );
@@ -105,9 +104,9 @@ export class EditTripComponent implements OnInit {
   onSubmit() {
     const dto = this.tripForm.value;
 
-    this.tripService.createTrip(dto).subscribe(data => {
+    this.tripService.editTrip(this.tripForm).subscribe(data => {
       this.tripService.getTripRequests();
-      this.router.navigateByUrl("/trips");
+      this.router.navigateByUrl("/my-trips");
     });
   }
 
