@@ -1,5 +1,27 @@
-<input type="text" placeholder="username" [(ngModel)]="username">
-<input type="text" placeholder="password" [(ngModel)]="password">
-<button mat-raised-button (click)="onLogin()">login </button>
+<form [formGroup]="loginForm">
 
+    <div class="d-flex justify-content-center align-items-center"></div>
+    <h1>Please sign in</h1>
 
+    <div>
+        <div style="width: 400px">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Email address</mat-label>
+                <input matInput placeholder="Email address" formControlName="username">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Your work email address</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div style="width: 400px">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Password" formControlName="password">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <button mat-raised-button color="primary" (click)="onLogin()" class="w-100 py-2">Login</button>
+
+    </div>
+</form>
