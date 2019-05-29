@@ -6,7 +6,6 @@ import {AllApartmentsComponent} from './components/main/apartments/all-apartment
 import {AllEmployeesComponent} from './components/main/employees/all-employees/all-employees.component';
 import {StatisticsComponent} from './components/main/statistics/statistics.component';
 import {NewTripComponent} from './components/main/trip/new-trip/new-trip.component';
-import {RolesComponent} from './components/main/employees/roles/roles.component';
 import {LoginComponent} from './components/auth/login/login.component';
 import {MainComponent} from './components/main/main.component';
 import {RegisterComponent} from './components/auth/register/register.component';
@@ -27,7 +26,6 @@ const routes: Routes = [
             {path: 'trips/edit/:id', component: EditTripComponent},
             {path: 'apartments', component: AllApartmentsComponent},
             {path: 'employees', component: AllEmployeesComponent},
-            {path: 'roles', component: RolesComponent},
             {path: 'statistics', component: StatisticsComponent},
         ]
     },

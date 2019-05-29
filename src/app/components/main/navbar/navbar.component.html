@@ -3,20 +3,20 @@
         <button mat-button routerLink="/trips" *ngIf="haveRole('ROLE_ADMIN')">All trips</button>
     </li>
     <li>
-        <button mat-button routerLink="/my-trips" *ngIf="haveRole('ROLE_USER')">My trips</button>
-    </li>
-    <li>
         <button mat-button routerLink="/my-organised-trips" *ngIf="haveRole('ROLE_ADMIN')">My organised trips</button>
     </li>
     <li>
+        <button mat-button routerLink="/my-trips" *ngIf="haveRole('ROLE_USER')">Attented trips</button>
+    </li>
+
+    <li>
         <button mat-button routerLink="/apartments" *ngIf="haveRole('ROLE_ADMIN')">Apartments</button>
     </li>
+
     <li>
         <button mat-button routerLink="/employees" *ngIf="haveRole('ROLE_ADMIN')">Employees (users)</button>
     </li>
-    <li>
-        <button mat-button routerLink="/roles" *ngIf="haveRole('ROLE_ADMIN')">Roles</button>
-    </li>
+
     <li>
         <button mat-button routerLink="/statistics" *ngIf="haveRole('ROLE_ADMIN')">Statistics</button>
     </li>

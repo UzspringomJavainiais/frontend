@@ -1,38 +1,78 @@
 <div mat-dialog-title>
-  Apartamentų pridėjimas
+    Add apartment
 </div>
+
 <form [formGroup]="addApartmentForm">
 
-  <div mat-dialog-content style="display: flex; flex-direction: column">
-    <mat-form-field class="w-100">
-      <input matInput
-             type="text"
-             placeholder="Apartamentų pavadinimas"
-             formControlName="name">
-    </mat-form-field>
+    <div mat-dialog-content style="display: flex; flex-direction: column">
+        <mat-form-field class="w-100">
+            <input matInput
+                   type="text"
+                   placeholder="Name of apartment"
+                   formControlName="name">
+        </mat-form-field>
 
-    <mat-form-field class="w-100">
-      <input matInput
-             type="number"
-             step="1"
-             placeholder="Apartamentų dydis (žm.)"
-             formControlName="maxCapacity">
-    </mat-form-field>
+        <ng-container formGroupName="location">
+            <mat-form-field class="w-100">
+                <input matInput
+                       placeholder="Country"
+                       formControlName="country">
+            </mat-form-field>
 
-    <mat-form-field class="w-100">
-      <input matInput
-             type="text"
-             placeholder="Apartamentų vieta"
-             formControlName="locationId">
-    </mat-form-field>
-  </div>
+            <mat-form-field class="w-100">
+                <input matInput
+                       placeholder="City"
+                       formControlName="city">
+            </mat-form-field>
 
-  <div mat-dialog-actions class="d-flex">
-    <button mat-stroked-button class="" [mat-dialog-close]>
-      Atšaukti
-    </button>
-    <button mat-raised-button color="primary" style="margin-left: 1em" [disabled]="addApartmentForm.invalid" (click)="saveApartment()">
-      Pridėti apartamentus
-    </button>
-  </div>
+            <mat-form-field class="w-100">
+                <input matInput
+                       placeholder="Address"
+                       formControlName="address">
+            </mat-form-field>
+        </ng-container>
+
+
+        <ng-container formArrayName="rooms">
+            <div class="d-flex justify-content-between">
+                <h3>Rooms</h3>
+                <div>
+                    <button mat-stroked-button color="primary" (click)="addRoom()">Add room</button>
+                </div>
+            </div>
+            <div *ngFor="let room of roomsList.controls; let i = index;">
+                <div [formGroupName]="i" class="d-flex ">
+                    <mat-form-field style="flex: 5">
+                        <input matInput
+                               placeholder="Room number"
+                               formControlName="number">
+                    </mat-form-field>
+
+                    <mat-form-field style="flex: 2">
+                        <input matInput
+                               type="number"
+                               step="1"
+                               placeholder="Capacity"
+                               formControlName="capacity"
+                               readonly>
+                    </mat-form-field>
+
+                    <mat-icon style="flex: 1; color: red" (click)="removeRoom(i)">delete</mat-icon>
+                </div>
+            </div>
+        </ng-container>
+
+    </div>
+
+    <div mat-dialog-actions class="d-flex">
+        <button mat-stroked-button class="" [mat-dialog-close]>
+            Cancel
+        </button>
+        <button mat-raised-button color="primary" style="margin-left: 1em" [disabled]="addApartmentForm.invalid"
+                (click)="saveApartment()">
+            Add apartment
+        </button>
+    </div>
 </form>
+
+
