@@ -1,15 +1,10 @@
-<div style="display: flex; justify-content: flex-end">
-  <button mat-raised-button color="primary" (click)="getCsvData()">
-    Download data
-  </button>
-  <button mat-raised-button color="primary" routerLink="/trips/new">
-    New trip
-  </button>
-  <button mat-raised-button (click)="mergeTrips()" color="primary">
-    Merge trips
-  </button>
+<div class="d-flex align-items-center">
+  <div>
+    <h1>My organized trips</h1>
+  </div>
 </div>
-<table mat-table [dataSource]="trips" *ngIf="trips?.length">
+
+<table mat-table [dataSource]="trips">
   <ng-container cdkColumnDef="name">
     <mat-header-cell *cdkHeaderCellDef>
       Trip name
@@ -41,11 +36,14 @@
   </ng-container>
 
   <mat-header-row
-    *cdkHeaderRowDef="['name', 'dateFrom', 'dateTo', 'number']"
-  ></mat-header-row>
+          *cdkHeaderRowDef="['name', 'dateFrom', 'dateTo', 'number']"></mat-header-row>
   <mat-row
-    *cdkRowDef="let row; columns: ['name', 'dateFrom', 'dateTo', 'number']"
-    (click)="getTripDetails(row.id)"
-  ></mat-row>
+          *cdkRowDef="let row; columns: ['name', 'dateFrom', 'dateTo', 'number']"
+          (click)="getTripDetails(row.id)"></mat-row>
 </table>
-<h3 *ngIf="!trips?.length">There is no trips</h3>
+
+
+<p class="no-trips" *ngIf="trips?.length === 0">
+  There is no organized trips
+</p>
+

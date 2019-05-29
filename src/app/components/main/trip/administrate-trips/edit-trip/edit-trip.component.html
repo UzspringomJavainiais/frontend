@@ -2,7 +2,7 @@
   <mat-card-header>
       <mat-card-title>Edit trip</mat-card-title>
   </mat-card-header>
-  <form [formGroup]="tripForm">
+  <form [formGroup]="tripForm" *ngIf="tripForm">
 
       <mat-card-content>
           <h4>General info</h4>

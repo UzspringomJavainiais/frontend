@@ -1,14 +1,14 @@
-import { Component, OnInit, Inject } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { EmployeeService } from "src/app/_services/employee.service";
-import { RoleService } from "src/app/_services/role.service";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { Employee } from "../../../../models/Employee";
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { EmployeeService } from 'src/app/_services/employee.service';
+import { RoleService } from 'src/app/_services/role.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Employee } from '../../../../models/Employee';
 
 @Component({
-  selector: "app-employee-edit-modal",
-  templateUrl: "./employee-edit-modal.component.html",
-  styleUrls: ["./employee-edit-modal.component.css"]
+  selector: 'app-employee-edit-modal',
+  templateUrl: './employee-edit-modal.component.html',
+  styleUrls: ['./employee-edit-modal.component.css']
 })
 export class EmployeeEditModalComponent implements OnInit {
   public editEmployeeForm: FormGroup;
@@ -31,9 +31,9 @@ export class EmployeeEditModalComponent implements OnInit {
       id: [this.selectedEmployee.id],
       firstName: [this.selectedEmployee.firstName, Validators.required],
       lastName: [this.selectedEmployee.lastName, Validators.required],
-      password: ["", Validators],
+      password: ['', Validators],
       email: [this.selectedEmployee.email, Validators.required],
-      roles: ["", Validators]
+      roles: ['', Validators]
     });
     this.getRoles();
   }
@@ -41,10 +41,13 @@ export class EmployeeEditModalComponent implements OnInit {
   saveEmployee() {
     const employee = this.editEmployeeForm.value;
     employee.roleIds = employee.roles.map(role => role.id);
-    console.log("išsaugomas: ", employee);
+    console.log('išsaugomas: ', employee);
     this.employeeService
       .editEmployee(employee)
-      .subscribe(data => console.log("Edited employee"));
+      .subscribe(data => {
+        console.log('Edited employee');
+        this.dialogRef.close();
+      });
   }
 
   private getRoles() {

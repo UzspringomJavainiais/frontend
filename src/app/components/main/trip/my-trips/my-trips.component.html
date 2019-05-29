@@ -1,4 +1,9 @@
-<h1>My attended trips</h1>
+
+<div class="d-flex align-items-center">
+    <div>
+        <h1>My attended trips</h1>
+    </div>
+</div>
 
 <table mat-table [dataSource]="trips">
     <ng-container cdkColumnDef="name">
@@ -38,7 +43,9 @@
             (click)="getTripDetails(row.id)"></mat-row>
 </table>
 
+
 <p class="no-trips" *ngIf="trips?.length === 0">
     There is no trips
 </p>
-  
+
+

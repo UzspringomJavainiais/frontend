@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TripService} from 'src/app/_services/trip.service';
-import {Trip} from '../../../../models/trip';
+import {Trip} from '../../../../../models/trip';
 import {EmployeeService} from 'src/app/_services/employee.service';
 import {Router} from '@angular/router';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -75,7 +75,7 @@ export class NewTripComponent implements OnInit {
         this.tripService.createTrip(dto)
             .subscribe(data => {
                 this.tripService.getTripRequests();
-                this.router.navigateByUrl('/trips');
+                this.router.navigateByUrl('');
             });
     }
 

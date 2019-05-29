@@ -17,7 +17,7 @@ export class AuthService implements CanActivate {
     login(username, password) {
         this.http.post(`${environment.apiUrl}api/auth/signin`, {username, password})
             .subscribe((data: any) => {
-                    this.router.navigateByUrl('/trips');
+                    this.router.navigateByUrl('');
                 },
                 () => console.log('error'));
     }

@@ -1,38 +1,44 @@
-<div style="display: flex; justify-content: flex-end">
-  <button mat-raised-button (click)="openAddNewEmployeeModal()">
-    Add new employee
-  </button>
+<div class="d-flex align-items-center">
+    <div>
+        <h1>Apartments</h1>
+    </div>
+
+    <div class="ml-auto">
+        <button mat-raised-button color="primary" (click)="openAddNewEmployeeModal()"> Add new employee
+        </button>
+    </div>
 </div>
+
 <table mat-table [dataSource]="employees" *ngIf="employees?.length">
-  <ng-container cdkColumnDef="firstName">
-    <mat-header-cell *cdkHeaderCellDef>
-      First name
-    </mat-header-cell>
-    <mat-cell *cdkCellDef="let row">
-      <a>{{ row?.firstName }}</a>
-    </mat-cell>
-  </ng-container>
-  <ng-container cdkColumnDef="lastName">
-    <mat-header-cell *cdkHeaderCellDef>
-      Last name
-    </mat-header-cell>
-    <mat-cell *cdkCellDef="let row">
-      <a>{{ row?.lastName }}</a>
-    </mat-cell>
-  </ng-container>
-  <ng-container cdkColumnDef="email">
-    <mat-header-cell *cdkHeaderCellDef>
-      Email
-    </mat-header-cell>
-    <mat-cell *cdkCellDef="let row">
-      <a>{{ row?.email }}</a>
-    </mat-cell>
-  </ng-container>
-  <mat-header-row
-    *cdkHeaderRowDef="['firstName', 'lastName', 'email']"
-  ></mat-header-row>
-  <mat-row
-    *cdkRowDef="let row; columns: ['firstName', 'lastName', 'email']"
-    (click)="editEmployee(row.id)"
-  ></mat-row>
+    <ng-container cdkColumnDef="firstName">
+        <mat-header-cell *cdkHeaderCellDef>
+            First name
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let row">
+            {{ row?.firstName }}
+        </mat-cell>
+    </ng-container>
+    <ng-container cdkColumnDef="lastName">
+        <mat-header-cell *cdkHeaderCellDef>
+            Last name
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let row">
+            {{ row?.lastName }}
+        </mat-cell>
+    </ng-container>
+    <ng-container cdkColumnDef="email">
+        <mat-header-cell *cdkHeaderCellDef>
+            Email
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let row">
+            {{ row?.email }}
+        </mat-cell>
+    </ng-container>
+    <mat-header-row
+            *cdkHeaderRowDef="['firstName', 'lastName', 'email']"
+    ></mat-header-row>
+    <mat-row
+            *cdkRowDef="let row; columns: ['firstName', 'lastName', 'email']"
+            (click)="editEmployee(row.id)"
+    ></mat-row>
 </table>

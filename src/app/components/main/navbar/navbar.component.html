@@ -1,12 +1,7 @@
 <ul>
+
     <li>
-        <button mat-button routerLink="/trips" *ngIf="haveRole('ROLE_ADMIN')">All trips</button>
-    </li>
-    <li>
-        <button mat-button routerLink="/my-organised-trips" *ngIf="haveRole('ROLE_ADMIN')">My organised trips</button>
-    </li>
-    <li>
-        <button mat-button routerLink="/my-trips" *ngIf="haveRole('ROLE_USER')">Attented trips</button>
+        <button mat-button routerLink="/my-trips" *ngIf="haveRole('ROLE_USER')">Attended trips</button>
     </li>
 
     <li>
@@ -21,11 +16,15 @@
         <button mat-button routerLink="/statistics" *ngIf="haveRole('ROLE_ADMIN')">Statistics</button>
     </li>
 
+    <li>
+        <button mat-button routerLink="/administrate-trips" *ngIf="haveRole('ROLE_ADMIN')">Administrate trips</button>
+    </li>
+
 
     <div style="color: white; display: flex; flex-direction: column; font-size: smaller; margin-left: auto;">
         <div>{{ me?.username }}</div>
-        <div *ngIf="haveRole('ROLE_ADMIN')"><i>Administratorius</i></div>
-        <div *ngIf="!haveRole('ROLE_ADMIN') && haveRole('ROLE_USER')"><i>Vartotojas</i></div>
+        <div *ngIf="haveRole('ROLE_ADMIN')"><i>Administrator</i></div>
+        <div *ngIf="!haveRole('ROLE_ADMIN') && haveRole('ROLE_USER')"><i>User</i></div>
     </div>
 
     <li class="li-avatar">
@@ -38,7 +37,7 @@
     <button mat-button [matMenuTriggerFor]="menu">
         <span [matBadge]="pendingRequests?.length !== 0 ? pendingRequests?.length : ''"
               matBadgeOverlap="false"
-              style="margin-right: 15px; color: white">Pranešimai</span>
+              style="margin-right: 15px; color: white">Requests</span>
     </button>
 
     <mat-menu #menu="matMenu">

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ApartmentService} from '../../../../_services/apartment.service';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatDialogRef} from '@angular/material';
 
 @Component({
     selector: 'app-new-apartment-modal',
@@ -12,7 +13,9 @@ export class NewApartmentModalComponent implements OnInit {
     public roomsList: FormArray;
 
     constructor(private apartmentService: ApartmentService,
-                private fb: FormBuilder) {
+                private fb: FormBuilder,
+                public dialogRef: MatDialogRef<NewApartmentModalComponent>,
+    ) {
     }
 
     ngOnInit() {
@@ -24,6 +27,7 @@ export class NewApartmentModalComponent implements OnInit {
         this.apartmentService.saveApartment(dto)
             .subscribe(data => {
                 //  TODO:
+                this.dialogRef.close();
                 console.log('successfully saved, show snackbar maybe?');
             });
     }

@@ -6,8 +6,8 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
 import {NavbarComponent} from './components/main/navbar/navbar.component';
-import {TripsComponent} from './components/main/trip/trips/trips.component';
-import {TripDetailsComponent} from './components/main/trip/trip-details/trip-details.component';
+import {AdministrateTripsComponent} from './components/main/trip/administrate-trips/administrate-trips.component';
+import {TripDetailsComponent} from './components/main/trip/administrate-trips/trip-details/trip-details.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AllApartmentsComponent} from './components/main/apartments/all-apartments/all-apartments.component';
 import {ApartmentInfoComponent} from './components/main/apartments/apartment-info/apartment-info.component';
@@ -17,7 +17,7 @@ import {AllEmployeesComponent} from './components/main/employees/all-employees/a
 import {NewEmployeeModalComponent} from './components/main/employees/new-employee-modal/new-employee-modal.component';
 import {StatisticsComponent} from './components/main/statistics/statistics.component';
 import {ChartsModule} from 'ng2-charts';
-import {NewTripComponent} from './components/main/trip/new-trip/new-trip.component';
+import {NewTripComponent} from './components/main/trip/administrate-trips/new-trip/new-trip.component';
 import {NewRoleModalComponent} from './components/main/employees/new-role-modal/new-role-modal.component';
 import {AuthComponent} from './components/auth/auth.component';
 import {LoginComponent} from './components/auth/login/login.component';
@@ -26,17 +26,17 @@ import {TokenInterceptor} from './_interceptors/req.interceptor';
 import {RegisterComponent} from './components/auth/register/register.component';
 import {MainComponent} from './components/main/main.component';
 import {EmployeeEditModalComponent} from './components/main/employees/employee-edit-modal/employee-edit-modal.component';
-import {MyOrganisedTripsComponent} from './components/main/trip/my-organised-trips/my-organised-trips.component';
+import {MyOrganisedTripsComponent} from './components/main/trip/administrate-trips/my-organised-trips/my-organised-trips.component';
 import {MyTripsComponent} from './components/main/trip/my-trips/my-trips.component';
-import {MergeTripsModalComponent} from './components/main/trip/merge-trips-modal/merge-trips-modal.component';
-import {EditTripComponent} from './components/main/trip/edit-trip/edit-trip.component';
+import {MergeTripsModalComponent} from './components/main/trip/administrate-trips/merge-trips-modal/merge-trips-modal.component';
+import {EditTripComponent} from './components/main/trip/administrate-trips/edit-trip/edit-trip.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
+import { AllTripsComponent } from './components/main/trip/administrate-trips/all-trips/all-trips.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavbarComponent,
-        TripsComponent,
         TripDetailsComponent,
         AllApartmentsComponent,
         ApartmentInfoComponent,
@@ -54,7 +54,9 @@ import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
         MyOrganisedTripsComponent,
         MyTripsComponent,
         MergeTripsModalComponent,
-        EditTripComponent
+        EditTripComponent,
+        AllTripsComponent,
+        AdministrateTripsComponent
     ],
     imports: [
         BrowserModule,

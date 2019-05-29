@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div *ngFor="let room of roomsList.controls; let i = index;">
-                <div [formGroupName]="i" class="d-flex ">
+                <div [formGroupName]="i" class="d-flex align-items-center">
                     <mat-form-field style="flex: 5">
                         <input matInput
                                placeholder="Room number"
@@ -57,7 +57,7 @@
                                readonly>
                     </mat-form-field>
 
-                    <mat-icon style="flex: 1; color: red" (click)="removeRoom(i)">delete</mat-icon>
+                    <mat-icon style="color: red; cursor: pointer" class="ml-2" (click)="removeRoom(i)">delete</mat-icon>
                 </div>
             </div>
         </ng-container>

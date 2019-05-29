@@ -1,32 +1,36 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {TripsComponent} from './components/main/trip/trips/trips.component';
-import {TripDetailsComponent} from './components/main/trip/trip-details/trip-details.component';
+import {TripDetailsComponent} from './components/main/trip/administrate-trips/trip-details/trip-details.component';
 import {AllApartmentsComponent} from './components/main/apartments/all-apartments/all-apartments.component';
 import {AllEmployeesComponent} from './components/main/employees/all-employees/all-employees.component';
 import {StatisticsComponent} from './components/main/statistics/statistics.component';
-import {NewTripComponent} from './components/main/trip/new-trip/new-trip.component';
+import {NewTripComponent} from './components/main/trip/administrate-trips/new-trip/new-trip.component';
 import {LoginComponent} from './components/auth/login/login.component';
 import {MainComponent} from './components/main/main.component';
 import {RegisterComponent} from './components/auth/register/register.component';
 import {AuthService} from './_services/auth.service';
 import { MyTripsComponent } from './components/main/trip/my-trips/my-trips.component';
-import { MyOrganisedTripsComponent } from './components/main/trip/my-organised-trips/my-organised-trips.component';
-import { EditTripComponent } from './components/main/trip/edit-trip/edit-trip.component';
+import { MyOrganisedTripsComponent } from './components/main/trip/administrate-trips/my-organised-trips/my-organised-trips.component';
+import { EditTripComponent } from './components/main/trip/administrate-trips/edit-trip/edit-trip.component';
+import {AdministrateTripsComponent} from './components/main/trip/administrate-trips/administrate-trips.component';
 
 const routes: Routes = [
     {
         path: '', component: MainComponent, canActivate: [AuthService], children: [
-            {path: '', component: TripsComponent},
+            {path: '', component: MyTripsComponent},
+
             {path: 'my-trips', component: MyTripsComponent},
-            {path: 'my-organised-trips', component: MyOrganisedTripsComponent},
-            {path: 'trips', component: TripsComponent},
-            {path: 'trip-details/:id', component: TripDetailsComponent},
-            {path: 'trips/new', component: NewTripComponent},
-            {path: 'trips/edit/:id', component: EditTripComponent},
+            {path: 'my-trips/new', component: NewTripComponent},
+            {path: 'my-trips/edit/:id', component: EditTripComponent},
+
+            {path: 'administrate-trips', component: AdministrateTripsComponent},
             {path: 'apartments', component: AllApartmentsComponent},
             {path: 'employees', component: AllEmployeesComponent},
             {path: 'statistics', component: StatisticsComponent},
+
+
+            {path: 'trip-details/:id', component: TripDetailsComponent},
+
         ]
     },
     {

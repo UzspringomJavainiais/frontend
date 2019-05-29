@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {TripService} from '../../../../_services/trip.service';
-import {AuthService} from '../../../../_services/auth.service';
+import {TripService} from '../../../../../_services/trip.service';
+import {AuthService} from '../../../../../_services/auth.service';
 
 @Component({
     selector: 'app-trip-details',
@@ -41,7 +41,7 @@ export class TripDetailsComponent implements OnInit {
             .subscribe(data => {
                 console.log('accepted');
                 this.tripService.getTripRequests();
-                this.router.navigate(['/trips']);
+                this.router.navigate(['/my-trips']);
             });
     }
 
@@ -50,12 +50,12 @@ export class TripDetailsComponent implements OnInit {
             .subscribe(data => {
                 console.log('declined');
                 this.tripService.getTripRequests();
-                this.router.navigate(['/trips']);
+                this.router.navigate(['']);
             });
     }
 
     editTripDetails = () => {
-        this.router.navigate(["/trips/edit", this.trip.id]);
-    };
+        this.router.navigate(['/my-trips/edit', this.trip.id]);
+    }
 
   }

@@ -7,15 +7,16 @@ table {
   width: 100%;
 }
 
-.background {
-  background: url("https://colorlib.com/preview/theme/safario/img/banner/banner.png");
-  display: block;
-  height: 100px;
-  background-size: cover;
-}
 
 /deep/ mat-row:hover {
   cursor: pointer;
   background: #f0f0f0;
   transition: 0.4s;
+}
+
+.no-trips {
+  font-style: italic;
+  text-align: center;
+  font-style: italic;
+  margin-top: 10px;
 }
