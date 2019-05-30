@@ -14,22 +14,16 @@ import * as FileSaver from 'file-saver';
 })
 export class AllTripsComponent implements OnInit {
     public trips: Trip[] = [];
-    public myTrips = [];
 
     constructor(
         private router: Router,
         private matDialog: MatDialog,
-        private tripService: TripService,
-        private employeeService: EmployeeService
-    ) {
+        private tripService: TripService) {
     }
 
     ngOnInit() {
-        this.tripService.getTrips().subscribe(data => (this.trips = data));
-
-        this.employeeService
-            .getMyTrips(2)
-            .subscribe((data: any[]) => (this.myTrips = data));
+        this.tripService.getTrips()
+            .subscribe(data => (this.trips = data));
     }
 
     getCsvData() {
@@ -45,9 +39,11 @@ export class AllTripsComponent implements OnInit {
 
     mergeTrips() {
         const matDialogRef = this.matDialog.open(MergeTripsModalComponent);
-        matDialogRef.afterClosed().subscribe(data => {
-            this.tripService.getTrips().subscribe((data) => (this.trips = data));
-        });
+        matDialogRef.afterClosed()
+            .subscribe(data => {
+                this.tripService.getTrips()
+                    .subscribe((data) => (this.trips = data));
+            });
     }
 
 }
