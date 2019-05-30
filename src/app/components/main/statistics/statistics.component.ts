@@ -48,7 +48,7 @@ export class StatisticsComponent implements OnInit {
 
     public barChartData4 = [{data: [], label: 'Trip days'}];
     public barChartLabels4 = ['Trip count'];
-    
+
     public dateFromForm: FormGroup;
 
 
