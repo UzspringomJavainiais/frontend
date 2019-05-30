@@ -102,16 +102,24 @@ export class EditTripComponent implements OnInit {
         this.accountsList = this.tripForm.get('accounts') as FormArray;
         this.checklistItemsList = this.tripForm.get('checklistItems') as FormArray;
 
+        trip.accounts.forEach(employee => {
+            this.addEmployee(employee);
+        })
 
         trip.checklistItems.forEach(item => {
             this.addCheckListItem(item);
         });
+    }
 
-        this.tripForm.get('dateFrom')
-            .valueChanges.subscribe(data => this.checkEmployees());
-
-        this.tripForm.get('dateTo')
-            .valueChanges.subscribe(data => this.checkEmployees());
+    private addEmployee(employee) {
+        this.accountsList.push(
+            this.fb.group({
+                id: [employee.id ? employee.id : '', Validators.required],
+                firstName: [employee.firstName ? employee.firstName : '', Validators.required],
+                lastName: [employee.lastName ? employee.lastName : '', Validators.required],
+                email: [employee.email ? employee.email : '', Validators.required]
+            })
+        )
     }
 
     private addCheckListItem(item) {
