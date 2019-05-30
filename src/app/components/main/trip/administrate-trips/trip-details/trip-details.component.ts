@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TripService} from '../../../../../_services/trip.service';
 import {AuthService} from '../../../../../_services/auth.service';
+import {Trip} from '../../../../../models/trip';
 
 @Component({
     selector: 'app-trip-details',
@@ -9,7 +10,8 @@ import {AuthService} from '../../../../../_services/auth.service';
     styleUrls: ['./trip-details.component.css']
 })
 export class TripDetailsComponent implements OnInit {
-    public trip: any;
+    trip: any;
+    possibleMerges: Trip[];
 
     constructor(
         private route: ActivatedRoute,
@@ -23,6 +25,8 @@ export class TripDetailsComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.tripService.getTripById(+params.id).subscribe(data => {
                 this.trip = data;
+                console.log(this.trip);
+                this.getPossibleMerges();
             });
         });
 
@@ -43,7 +47,7 @@ export class TripDetailsComponent implements OnInit {
             .subscribe(data => {
                 console.log('accepted');
                 this.tripService.getTripRequests();
-                this.router.navigate(['/my-trips']);
+                this.router.navigate(['/trips']);
             });
     }
 
@@ -72,4 +76,15 @@ export class TripDetailsComponent implements OnInit {
             return 'APPROVED';
         }
     }
+
+    getPossibleMerges() {
+        this.tripService.getPossibleMerges(this.trip.id).subscribe(trips => {
+            this.possibleMerges = trips;
+        });
+    }
+
+    getSideBySideTrips(id) {
+        this.router.navigate(['/merge-trips'], {queryParams: {tripId: this.trip.id, mergeId: id}});
+    }
+
 }

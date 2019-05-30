@@ -28,10 +28,10 @@ import {MainComponent} from './components/main/main.component';
 import {EmployeeEditModalComponent} from './components/main/employees/employee-edit-modal/employee-edit-modal.component';
 import {MyOrganisedTripsComponent} from './components/main/trip/administrate-trips/my-organised-trips/my-organised-trips.component';
 import {MyTripsComponent} from './components/main/trip/my-trips/my-trips.component';
-import {MergeTripsModalComponent} from './components/main/trip/administrate-trips/merge-trips-modal/merge-trips-modal.component';
 import {EditTripComponent} from './components/main/trip/administrate-trips/edit-trip/edit-trip.component';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DIALOG_DEFAULT_OPTIONS, NativeDateAdapter} from '@angular/material';
 import { AllTripsComponent } from './components/main/trip/administrate-trips/all-trips/all-trips.component';
+import { MergeTripsComponent } from './components/main/trip/administrate-trips/trip-details/merge-trips/merge-trips.component';
 import {MomentUtcDateAdapter} from './_adapters/AppDateAdapter';
 import {MAT_MOMENT_DATE_FORMATS} from '@angular/material-moment-adapter';
 
@@ -91,10 +91,10 @@ export const APP_DATE_FORMATS = {
         EmployeeEditModalComponent,
         MyOrganisedTripsComponent,
         MyTripsComponent,
-        MergeTripsModalComponent,
         EditTripComponent,
         AllTripsComponent,
-        AdministrateTripsComponent
+        AdministrateTripsComponent,
+        MergeTripsComponent
     ],
     imports: [
         BrowserModule,
@@ -131,7 +131,6 @@ export const APP_DATE_FORMATS = {
         NewEmployeeModalComponent,
         NewRoleModalComponent,
         EmployeeEditModalComponent,
-        MergeTripsModalComponent
     ]
 })
 export class AppModule {

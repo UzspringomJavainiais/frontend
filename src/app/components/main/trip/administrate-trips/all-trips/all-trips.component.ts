@@ -4,7 +4,6 @@ import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {TripService} from '../../../../../_services/trip.service';
 import {EmployeeService} from '../../../../../_services/employee.service';
-import {MergeTripsModalComponent} from '../merge-trips-modal/merge-trips-modal.component';
 import * as FileSaver from 'file-saver';
 
 @Component({
@@ -36,14 +35,5 @@ export class AllTripsComponent implements OnInit {
     getTripDetails = (id: number) => {
         this.router.navigate(['/trip-details', id]);
     };
-
-    mergeTrips() {
-        const matDialogRef = this.matDialog.open(MergeTripsModalComponent);
-        matDialogRef.afterClosed()
-            .subscribe(data => {
-                this.tripService.getTrips()
-                    .subscribe((data) => (this.trips = data));
-            });
-    }
 
 }

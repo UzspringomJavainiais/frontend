@@ -5,3 +5,26 @@
 .dates-group {
   display: flex;
 }
+
+.example-container {
+  height: 400px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+
+/deep/ mat-row:hover {
+  cursor: pointer;
+  background: #f0f0f0;
+  transition: 0.4s;
+}
+
+.no-trips {
+  font-style: italic;
+  text-align: center;
+  font-style: italic;
+  margin-top: 10px;
+}
