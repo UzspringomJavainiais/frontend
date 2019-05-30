@@ -10,6 +10,7 @@
         </div>
     </mat-card-header>
     <mat-list>
+
         <h3 mat-subheader>Trip name</h3>
         <mat-list-item>
             <h4 mat-line>{{ trip.name }}</h4>
@@ -32,6 +33,30 @@
                 </mat-list-item>
             </div>
         </div>
+
+        <mat-divider *ngIf="getMyRequests().length !== 0"></mat-divider>
+
+        <mat-list *ngIf="getMyRequests().length !== 0">
+            <h3 mat-subheader>Pending requests</h3>
+
+            <mat-list-item *ngFor="let request of getMyRequests()">
+                <h3 matLine> {{request?.type}} </h3>
+                <div style="display: flex; margin-left: auto;">
+                    <button mat-raised-button
+                            color="primary"
+                            class="mr-2"
+                            (click)="acceptTripRequst(request)">
+                        Accept
+                    </button>
+                    <button mat-stroked-button
+                            style="color: red;"
+                            (click)="rejectTripRequest(request)">
+                        Reject
+                    </button>
+                </div>
+            </mat-list-item>
+        </mat-list>
+
         <mat-divider></mat-divider>
         <h3 mat-subheader>Employees</h3>
         <mat-list-item *ngFor="let account of trip?.accounts">
@@ -51,23 +76,7 @@
 
         <h3 *ngIf="getMyRequests().length > 0">Nepriimti sprendimai</h3>
 
-        <div *ngFor="let request of getMyRequests()">
-            <div style="display: flex">
-                <div>Request type: {{ request?.type }}</div>
 
-                <div style="display: flex; margin-left: auto;">
-                    <button
-                            mat-raised-button
-                            color="primary"
-                            (click)="acceptTripRequst(request)">
-                        Accept
-                    </button>
-                    <button mat-stroked-button (click)="rejectTripRequest(request)">
-                        Reject
-                    </button>
-                </div>
-            </div>
-        </div>
     </mat-list>
 </mat-card>
 
