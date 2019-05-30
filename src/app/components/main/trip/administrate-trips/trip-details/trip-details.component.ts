@@ -25,6 +25,7 @@ export class TripDetailsComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.tripService.getTripById(+params.id).subscribe(data => {
                 this.trip = data;
+                console.log(this.trip);
                 this.getPossibleMerges();
             });
         });

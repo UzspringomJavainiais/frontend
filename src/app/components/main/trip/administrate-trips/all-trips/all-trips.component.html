@@ -4,17 +4,24 @@
   </div>
 
   <div class="ml-auto">
-    <button mat-raised-button color="primary" (click)="getCsvData()" class="mr-1">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="getCsvData()"
+      class="mr-1"
+    >
       Download data
     </button>
-    <button mat-raised-button color="primary" routerLink="/my-trips/new" class="mr-1">
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="/my-trips/new"
+      class="mr-1"
+    >
       New trip
     </button>
-    <button mat-raised-button (click)="mergeTrips()" color="primary">
-      Merge trips
-    </button>  </div>
+  </div>
 </div>
-
 
 <table mat-table [dataSource]="trips">
   <ng-container cdkColumnDef="name">
@@ -48,10 +55,12 @@
   </ng-container>
 
   <mat-header-row
-          *cdkHeaderRowDef="['name', 'dateFrom', 'dateTo', 'number']"></mat-header-row>
+    *cdkHeaderRowDef="['name', 'dateFrom', 'dateTo', 'number']"
+  ></mat-header-row>
   <mat-row
-          *cdkRowDef="let row; columns: ['name', 'dateFrom', 'dateTo', 'number']"
-          (click)="getTripDetails(row.id)"></mat-row>
+    *cdkRowDef="let row; columns: ['name', 'dateFrom', 'dateTo', 'number']"
+    (click)="getTripDetails(row.id)"
+  ></mat-row>
 </table>
 
 <p class="no-trips" *ngIf="trips?.length === 0">
