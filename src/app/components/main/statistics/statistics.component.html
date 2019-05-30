@@ -1,11 +1,73 @@
 <div>
-  <div style="display: block">
-    <canvas baseChart
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
-            [options]="barChartOptions"
-            [legend]="barChartLegend"
-            [chartType]="barChartType">
-    </canvas>
-  </div>
+    <h1>Statistics</h1>
 </div>
+<div class="statistics-container">
+    <div>
+        <h2>Longest trips</h2>
+        <canvas baseChart
+                [datasets]="barChartData1"
+                [labels]="barChartLabels1"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+        </canvas>
+    </div>
+
+    <div>
+        <h2>Most expensive trips</h2>
+        <canvas baseChart
+                [datasets]="barChartData2"
+                [labels]="barChartLabels2"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+        </canvas>
+    </div>
+
+    <div>
+        <h2>Most adventurous employees</h2>
+        <canvas baseChart
+                [datasets]="barChartData3"
+                [labels]="barChartLabels3"
+                [options]="barChartOptions3"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+        </canvas>
+    </div>
+
+    <div>
+        <form [formGroup]="dateFromForm">
+            <div style="display: flex">
+                <div>
+                    <h2>Trips in period</h2>
+                </div>
+
+                <div style="margin-left: auto; margin-right: 5px">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker1" placeholder="Choose date from"
+                               formControlName="dateFrom">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker2" placeholder="Choose date to" formControlName="dateTo">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+
+        <canvas baseChart
+                [datasets]="barChartData4"
+                [labels]="barChartLabels4"
+                [options]="barChartOptions3"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+        </canvas>
+    </div>
+</div>
+
