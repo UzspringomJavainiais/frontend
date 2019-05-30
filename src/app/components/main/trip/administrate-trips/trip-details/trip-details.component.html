@@ -4,7 +4,7 @@
 
             <h3>Trip details</h3>
 
-            <button mat-raised-button color="primary" class="ml-auto" (click)="editTripDetails()">
+            <button mat-raised-button color="primary" class="ml-auto" *ngIf="(authService.haveRole('ROLE_ADMIN') || authService.haveRole('ROLE_ORGANIZER'))" (click)="editTripDetails()">
                 Edit trip
             </button>
         </div>
@@ -71,7 +71,7 @@
     </mat-list>
 </mat-card>
 
-<mat-card class="example-card" *ngIf="possibleMerges">
+<mat-card class="example-card" *ngIf="possibleMerges && (authService.haveRole('ROLE_ADMIN') || authService.haveRole('ROLE_ORGANIZER'))">
     <div class="d-flex align-items-center">
         <div>
           <h1>Possible merges</h1>

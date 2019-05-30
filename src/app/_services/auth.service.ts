@@ -35,4 +35,11 @@ export class AuthService implements CanActivate {
     logout() {
         return this.http.post(`${environment.apiUrl}api/auth/logout`, null);
     }
+
+    haveRole(role) {
+        if (!this.me || !this.me.roles) {
+            return false;
+        }
+        return this.me.roles.findIndex(item => item === role) >= 0;
+    }
 }
