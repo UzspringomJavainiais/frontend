@@ -36,9 +36,13 @@
         <h3 mat-subheader>Employees</h3>
         <mat-list-item *ngFor="let account of trip?.accounts">
             <h4 mat-line>
-                {{ account.firstName }} {{ account.lastName }} - {{ account.email }}
+                {{ account?.firstName }} {{ account?.lastName }} - {{ account?.email }}
             </h4>
+            <mat-icon matSuffix *ngIf="getAccountStatus(account) === 'APPROVED'" style="color: green;">thumb_up</mat-icon>
+            <mat-icon matSuffix *ngIf="getAccountStatus(account) === 'PENDING'">loop</mat-icon>
+            <mat-icon matSuffix *ngIf="getAccountStatus(account) === 'DECLINED'" style="color: red">thumb_down</mat-icon>
         </mat-list-item>
+
         <mat-divider></mat-divider>
         <h3 mat-subheader>Checklist Items</h3>
         <mat-list-item *ngFor="let checklistItem of trip?.checklistItems">
