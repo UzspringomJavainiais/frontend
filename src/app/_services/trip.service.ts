@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {HttpClient, HttpEventType} from '@angular/common/http';
+import {BehaviorSubject, Observable, of, Subscriber} from 'rxjs';
 import {Trip} from '../models/trip';
 import {environment} from '../../environments/environment';
+import { map } from 'rxjs/operators';
+import { CheckListItemWithAttachment } from '../components/main/trip/administrate-trips/new-trip/add-attachments/add-attachments.component';
 
 @Injectable({
     providedIn: 'root'
@@ -69,4 +71,40 @@ export class TripService {
             this.tripRequests.next(data);
         });
     }
+
+    uploadTripFile(tripId: number, checkListItemWithAttachment: CheckListItemWithAttachment): Observable<any> {
+
+        return this.fileToString(checkListItemWithAttachment.attachment)
+        .pipe(
+            map((fileAsString) => {
+                return this.http.post<any>(`${environment.apiUrl}api/checklist-item`, {
+                    name: checkListItemWithAttachment.name,
+                    price: checkListItemWithAttachment.price,
+                    tripId: tripId,
+                    checked: checkListItemWithAttachment.attachment !== null,
+                    attachment: {
+                        fileName: checkListItemWithAttachment.attachment.name,
+                        fileData: fileAsString,
+                    }
+                });
+            })
+        );
+    }
+
+    private fileToString(file: File): Observable<string> {
+        return Observable.create(
+            (sub: Subscriber<string>): void => {
+                const r = new FileReader;
+                // if success
+                r.onload = (ev: ProgressEvent): void => {
+                    sub.next((ev.target as any).result);
+                };
+                // if failed
+                r.onerror = (ev): void => {
+                    sub.error(ev);
+                };
+                r.readAsText(file);
+            }
+        );
+    } //
 }

@@ -54,8 +54,8 @@ export class TripDetailsComponent implements OnInit {
             });
     }
 
-    editTripDetails = () => {
+    editTripDetails() {
         this.router.navigate(['/my-trips/edit', this.trip.id]);
     }
 
-  }
+}

@@ -32,6 +32,9 @@ import {MergeTripsModalComponent} from './components/main/trip/administrate-trip
 import {EditTripComponent} from './components/main/trip/administrate-trips/edit-trip/edit-trip.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
 import { AllTripsComponent } from './components/main/trip/administrate-trips/all-trips/all-trips.component';
+import { FileUploadModule } from 'ng2-file-upload';
+import { AddAttachmentsComponent } from './components/main/trip/administrate-trips/new-trip/add-attachments/add-attachments.component';
+import { SortByPipe } from './utils/sort-by.pipe';
 
 @NgModule({
     declarations: [
@@ -46,6 +49,7 @@ import { AllTripsComponent } from './components/main/trip/administrate-trips/all
         StatisticsComponent,
         NewTripComponent,
         NewRoleModalComponent,
+        AddAttachmentsComponent,
         AuthComponent,
         LoginComponent,
         RegisterComponent,
@@ -56,7 +60,9 @@ import { AllTripsComponent } from './components/main/trip/administrate-trips/all
         MergeTripsModalComponent,
         EditTripComponent,
         AllTripsComponent,
-        AdministrateTripsComponent
+        AdministrateTripsComponent,
+        
+        SortByPipe,
     ],
     imports: [
         BrowserModule,
@@ -67,7 +73,8 @@ import { AllTripsComponent } from './components/main/trip/administrate-trips/all
         HttpClientModule,
         ReactiveFormsModule,
         FormsModule,
-        ChartsModule
+        ChartsModule,
+        FileUploadModule,
     ],
     providers: [
         CookieService,

@@ -49,3 +49,8 @@ html, body {
   margin: auto;
   padding: 30px;
 }
+
+.busy-date {
+  background: mat-color($candy-app-accent);
+  border-radius: 100%;
+}
