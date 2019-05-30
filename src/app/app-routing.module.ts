@@ -13,6 +13,7 @@ import { MyTripsComponent } from './components/main/trip/my-trips/my-trips.compo
 import { MyOrganisedTripsComponent } from './components/main/trip/administrate-trips/my-organised-trips/my-organised-trips.component';
 import { EditTripComponent } from './components/main/trip/administrate-trips/edit-trip/edit-trip.component';
 import {AdministrateTripsComponent} from './components/main/trip/administrate-trips/administrate-trips.component';
+import { MergeTripsComponent } from './components/main/trip/administrate-trips/trip-details/merge-trips/merge-trips.component';
 
 const routes: Routes = [
     {
@@ -30,6 +31,7 @@ const routes: Routes = [
 
 
             {path: 'trip-details/:id', component: TripDetailsComponent},
+            {path: 'merge-trips', component: MergeTripsComponent}
 
         ]
     },

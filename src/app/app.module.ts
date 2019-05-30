@@ -32,6 +32,7 @@ import {MergeTripsModalComponent} from './components/main/trip/administrate-trip
 import {EditTripComponent} from './components/main/trip/administrate-trips/edit-trip/edit-trip.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
 import { AllTripsComponent } from './components/main/trip/administrate-trips/all-trips/all-trips.component';
+import { MergeTripsComponent } from './components/main/trip/administrate-trips/trip-details/merge-trips/merge-trips.component';
 
 @NgModule({
     declarations: [
@@ -56,7 +57,8 @@ import { AllTripsComponent } from './components/main/trip/administrate-trips/all
         MergeTripsModalComponent,
         EditTripComponent,
         AllTripsComponent,
-        AdministrateTripsComponent
+        AdministrateTripsComponent,
+        MergeTripsComponent
     ],
     imports: [
         BrowserModule,

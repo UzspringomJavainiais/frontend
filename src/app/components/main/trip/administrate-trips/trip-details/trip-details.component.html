@@ -66,3 +66,64 @@
         </div>
     </mat-list>
 </mat-card>
+
+<mat-card class="example-card" *ngIf="possibleMerges">
+    <div class="d-flex align-items-center">
+        <div>
+          <h1>Possible merges</h1>
+        </div>
+      
+        <!-- <div class="ml-auto">
+          <button mat-raised-button color="primary" (click)="getCsvData()" class="mr-1">
+            Download data
+          </button>
+          <button mat-raised-button color="primary" routerLink="/my-trips/new" class="mr-1">
+            New trip
+          </button>
+          <button mat-raised-button (click)="mergeTrips()" color="primary">
+            Merge trips
+          </button>  </div> -->
+      </div>
+      
+      <table mat-table [dataSource]="possibleMerges">
+        <ng-container cdkColumnDef="name">
+          <mat-header-cell *cdkHeaderCellDef>
+            Trip name
+          </mat-header-cell>
+          <mat-cell *cdkCellDef="let row">
+            <a>{{ row?.name }}</a>
+          </mat-cell>
+        </ng-container>
+      
+        <ng-container cdkColumnDef="dateFrom">
+          <mat-header-cell *cdkHeaderCellDef> Date from</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">
+            {{ row?.dateFrom | date: longDate }}
+          </mat-cell>
+        </ng-container>
+      
+        <ng-container cdkColumnDef="dateTo">
+          <mat-header-cell *cdkHeaderCellDef> Date to</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">
+            {{ row?.dateTo | date: longDate }}
+          </mat-cell>
+        </ng-container>
+      
+        <ng-container cdkColumnDef="number">
+          <mat-header-cell *cdkHeaderCellDef>
+            Number of employees
+          </mat-header-cell>
+          <mat-cell *cdkCellDef="let row"> {{ row?.accounts?.length }} </mat-cell>
+        </ng-container>
+      
+        <mat-header-row
+                *cdkHeaderRowDef="['name', 'dateFrom', 'dateTo', 'number']"></mat-header-row>
+        <mat-row
+                *cdkRowDef="let row; columns: ['name', 'dateFrom', 'dateTo', 'number']"
+                (click)="getSideBySideTrips(row.id)"></mat-row>
+      </table>
+      
+      <p class="no-trips" *ngIf="possibleMerges?.length === 0">
+        There are no possible merges
+      </p>
+</mat-card>

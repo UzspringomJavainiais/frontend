@@ -15,6 +15,10 @@ export class TripService {
         this.getTripRequests();
     }
 
+    getPossibleMerges(id: number): Observable<Trip[]> {
+        return this.http.get<Trip[]>(`${environment.apiUrl}api/trip/${id}/tripsForMerge`);
+    }
+
     editTrip(trip): Observable<Trip[]> {
         return this.http.put<Trip[]>(`${environment.apiUrl}api/trip`, trip);
     }
@@ -27,9 +31,9 @@ export class TripService {
         return this.http.get<Trip[]>(`${environment.apiUrl}api/me/trips`);
     }
 
-    mergeTrips(trips) {
+    mergeTrips(id1, id2) {
         return this.http.post(
-            `${environment.apiUrl}api/trip/merge/${trips[0]}&${trips[1]}`,
+            `${environment.apiUrl}api/trip/merge/${id1}&${id2}`,
             null
         );
     }
