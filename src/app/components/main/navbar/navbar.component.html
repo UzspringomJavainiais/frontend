@@ -45,7 +45,7 @@
     <mat-menu #menu="matMenu">
         <div *ngFor="let request of pendingRequests ">
             <div mat-menu-item style="display: flex; flex-direction: column" [routerLink]="['/trip-details', request.trip.id]">
-                Kelionei "{{request.trip.name}}" reikalingas patvirtinimas.
+                Trip "{{request.trip.name}}" need your attention
             </div>
         </div>
     </mat-menu>

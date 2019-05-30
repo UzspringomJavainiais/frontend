@@ -36,7 +36,9 @@ export class TripDetailsComponent implements OnInit {
     }
 
     getMyRequests() {
-        if (!this.trip) { return []; }
+        if (!this.trip) {
+            return [];
+        }
         return this.trip.tripRequests.filter(request => request.account.email === this.authService.me.username && request.status === 'NEW');
     }
 
@@ -62,14 +64,27 @@ export class TripDetailsComponent implements OnInit {
         this.router.navigate(['/my-trips/edit', this.trip.id]);
     }
 
+    getAccountStatus(account) {
+        const tripRequest = this.trip.tripRequests.filter(request => request.account.firstName + request.account.lastName === account.firstName + request.account.lastName);
+
+        const find = tripRequest.find(request => request.status === 'NEW' || request.status === 'DECLINED');
+        if (find && find.status && find.status === 'NEW') {
+            return 'PENDING';
+        } else if (find && find.status && find.status === 'DECLINED') {
+            return 'DECLINED';
+        } else {
+            return 'APPROVED';
+        }
+    }
+
     getPossibleMerges() {
         this.tripService.getPossibleMerges(this.trip.id).subscribe(trips => {
             this.possibleMerges = trips;
-        })
+        });
     }
 
     getSideBySideTrips(id) {
-        this.router.navigate(['/merge-trips'], { queryParams: { tripId: this.trip.id, mergeId: id }});
+        this.router.navigate(['/merge-trips'], {queryParams: {tripId: this.trip.id, mergeId: id}});
     }
 
-  }
+}
