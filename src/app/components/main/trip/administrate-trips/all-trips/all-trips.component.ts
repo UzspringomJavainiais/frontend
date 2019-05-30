@@ -22,7 +22,8 @@ export class AllTripsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.tripService.getTrips().subscribe(data => (this.trips = data));
+        this.tripService.getTrips()
+            .subscribe(data => (this.trips = data));
     }
 
     getCsvData() {
