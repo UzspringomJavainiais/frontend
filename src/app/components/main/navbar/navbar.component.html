@@ -23,13 +23,15 @@
 
     <div style="color: white; display: flex; flex-direction: column; font-size: smaller; margin-left: auto;">
         <div>{{ me?.username }}</div>
+        <div>{{ me?.firstName }} {{me?.lastName}}</div>
         <div *ngIf="haveRole('ROLE_ADMIN')"><i>Administrator</i></div>
-        <div *ngIf="!haveRole('ROLE_ADMIN') && haveRole('ROLE_USER')"><i>User</i></div>
+        <div *ngIf="!haveRole('ROLE_ADMIN') && haveRole('ROLE_ORGANIZER')"><i>Trip organizer</i></div>
+        <div *ngIf="!haveRole('ROLE_ADMIN') && !haveRole('ROLE_ORGANIZER') && haveRole('ROLE_USER')"><i>User</i></div>
     </div>
 
     <li class="li-avatar">
         <img class="avatar"
-             src="https://www.w3schools.com/howto/img_avatar.png"
+             src="./assets/img/danielius.png"
              alt="avatar"/>
     </li>
 
