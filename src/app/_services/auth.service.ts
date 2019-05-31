@@ -5,19 +5,23 @@ import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {CookieService} from 'ngx-cookie-service';
 import {tap} from 'rxjs/operators';
+import {TripService} from './trip.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService implements CanActivate {
     public me: any;
-    constructor(private http: HttpClient, private router: Router) {
+    constructor(private http: HttpClient,
+                private router: Router,
+                private tripService: TripService) {
     }
 
     login(username, password) {
         this.http.post(`${environment.apiUrl}api/auth/signin`, {username, password})
             .subscribe((data: any) => {
                     this.router.navigateByUrl('');
+                    this.tripService.getTripRequests();
                 },
                 () => console.log('error'));
     }
@@ -34,5 +38,12 @@ export class AuthService implements CanActivate {
 
     logout() {
         return this.http.post(`${environment.apiUrl}api/auth/logout`, null);
+    }
+
+    haveRole(role) {
+        if (!this.me || !this.me.roles) {
+            return false;
+        }
+        return this.me.roles.findIndex(item => item === role) >= 0;
     }
 }

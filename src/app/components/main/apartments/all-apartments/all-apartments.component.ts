@@ -28,7 +28,6 @@ export class AllApartmentsComponent implements OnInit {
     private getApartments() {
         this.apartmentService.getAllApartments()
             .subscribe(data => {
-                console.log(data);
                 this.apartments = data;
             });
     }

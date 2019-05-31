@@ -1,23 +1,22 @@
 <mat-card class="example-card">
-    <mat-card-header>
-        <mat-card-title>New trip</mat-card-title>
-    </mat-card-header>
-    <form [formGroup]="tripForm">
+  <mat-card-header>
+    <mat-card-title>New trip</mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="tripForm">
+    <mat-card-content>
+        <h4>General info</h4>
 
-        <mat-card-content>
-            <h4>General info</h4>
+        <mat-form-field>
+            <input formControlName="name" matInput placeholder="Name" />
+        </mat-form-field>
 
-            <mat-form-field>
-                <input formControlName="name" matInput placeholder="Name"/>
-            </mat-form-field>
-
-            <mat-form-field>
-                <textarea matInput
-                      formControlName="description"
-                      name="description"
-                      matTextareaAutosize matAutosizeMinRows=1
-                      placeholder="Description"></textarea>
-            </mat-form-field>
+        <mat-form-field>
+            <textarea matInput
+                    formControlName="description"
+                    name="description"
+                    matTextareaAutosize matAutosizeMinRows=1
+                    placeholder="Description"></textarea>
+        </mat-form-field>
 
             <h4>Dates</h4>
             <div class="input-block">
@@ -40,6 +39,36 @@
                     <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
             </div>
+
+            <h4>From where trip starts</h4>
+            <mat-form-field>
+                <mat-label>From where</mat-label>
+                <mat-select formControlName="from">
+                <mat-option
+                    *ngFor="let apartment of apartments"
+                    [value]="apartment.id"
+                >
+                    {{ apartment.location.name }} rooms: {{ apartment.rooms.length }} -
+                    {{ apartment.location.address }}, {{ apartment.location.city }},
+                    {{ apartment.location.country }}
+                </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <h4>Destination</h4>
+            <mat-form-field>
+                <mat-label>To where</mat-label>
+                <mat-select formControlName="to">
+                <mat-option
+                    *ngFor="let apartment of apartments"
+                    [value]="apartment.id"
+                >
+                    {{ apartment.location.name }} rooms: {{ apartment.rooms.length }} -
+                    {{ apartment.location.address }}, {{ apartment.location.city }},
+                    {{ apartment.location.country }}
+                </mat-option>
+                </mat-select>
+            </mat-form-field>
 
             <h4>Select employees to go to this trip</h4>
             <mat-expansion-panel>

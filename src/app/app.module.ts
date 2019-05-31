@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {Injectable, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -28,13 +28,51 @@ import {MainComponent} from './components/main/main.component';
 import {EmployeeEditModalComponent} from './components/main/employees/employee-edit-modal/employee-edit-modal.component';
 import {MyOrganisedTripsComponent} from './components/main/trip/administrate-trips/my-organised-trips/my-organised-trips.component';
 import {MyTripsComponent} from './components/main/trip/my-trips/my-trips.component';
-import {MergeTripsModalComponent} from './components/main/trip/administrate-trips/merge-trips-modal/merge-trips-modal.component';
 import {EditTripComponent} from './components/main/trip/administrate-trips/edit-trip/edit-trip.component';
-import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DIALOG_DEFAULT_OPTIONS, NativeDateAdapter} from '@angular/material';
 import { AllTripsComponent } from './components/main/trip/administrate-trips/all-trips/all-trips.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { AddAttachmentsComponent } from './components/main/trip/administrate-trips/new-trip/add-attachments/add-attachments.component';
 import { SortByPipe } from './utils/sort-by.pipe';
+import { MergeTripsComponent } from './components/main/trip/administrate-trips/trip-details/merge-trips/merge-trips.component';
+import {MomentUtcDateAdapter} from './_adapters/AppDateAdapter';
+import {MAT_MOMENT_DATE_FORMATS} from '@angular/material-moment-adapter';
+
+@Injectable()
+export class MyDateAdapter extends NativeDateAdapter {
+    getFirstDayOfWeek(): number {
+        return 1;
+    }
+
+    format(date: any, displayFormat: Object): string {
+        if (displayFormat === 'input') {
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            const year = date.getFullYear();
+            if (day < 10) {
+                day = '0' + day;
+            }
+            if (month < 10) {
+                month = '0' + month;
+            }
+            return `${year}-${month}-${day}`;
+        }
+
+        return date.toDateString();
+    }
+}
+
+export const APP_DATE_FORMATS = {
+    parse: {
+        dateInput: {month: 'short', year: 'numeric', day: 'numeric'},
+    },
+    display: {
+        dateInput: 'input',
+        monthYearLabel: {year: 'numeric', month: 'numeric'},
+        dateA11yLabel: {year: 'numeric', month: 'long', day: 'numeric'},
+        monthYearA11yLabel: {year: 'numeric', month: 'long'},
+    }
+};
 
 @NgModule({
     declarations: [
@@ -57,12 +95,12 @@ import { SortByPipe } from './utils/sort-by.pipe';
         EmployeeEditModalComponent,
         MyOrganisedTripsComponent,
         MyTripsComponent,
-        MergeTripsModalComponent,
         EditTripComponent,
         AllTripsComponent,
         AdministrateTripsComponent,
         
         SortByPipe,
+        MergeTripsComponent
     ],
     imports: [
         BrowserModule,
@@ -78,6 +116,8 @@ import { SortByPipe } from './utils/sort-by.pipe';
     ],
     providers: [
         CookieService,
+        {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+        {provide: DateAdapter, useClass: MomentUtcDateAdapter},
         {
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,
@@ -98,7 +138,6 @@ import { SortByPipe } from './utils/sort-by.pipe';
         NewEmployeeModalComponent,
         NewRoleModalComponent,
         EmployeeEditModalComponent,
-        MergeTripsModalComponent
     ]
 })
 export class AppModule {

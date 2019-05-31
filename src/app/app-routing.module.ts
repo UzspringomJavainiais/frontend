@@ -14,6 +14,7 @@ import { MyOrganisedTripsComponent } from './components/main/trip/administrate-t
 import { EditTripComponent } from './components/main/trip/administrate-trips/edit-trip/edit-trip.component';
 import {AdministrateTripsComponent} from './components/main/trip/administrate-trips/administrate-trips.component';
 import { AddAttachmentsComponent } from './components/main/trip/administrate-trips/new-trip/add-attachments/add-attachments.component';
+import { MergeTripsComponent } from './components/main/trip/administrate-trips/trip-details/merge-trips/merge-trips.component';
 
 const routes: Routes = [
     {
@@ -32,6 +33,7 @@ const routes: Routes = [
 
 
             {path: 'trip-details/:id', component: TripDetailsComponent},
+            {path: 'merge-trips', component: MergeTripsComponent}
 
         ]
     },

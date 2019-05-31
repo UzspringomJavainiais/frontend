@@ -4,12 +4,13 @@
 
             <h3>Trip details</h3>
 
-            <button mat-raised-button color="primary" class="ml-auto" (click)="editTripDetails()">
+            <button mat-raised-button color="primary" class="ml-auto" *ngIf="(authService.haveRole('ROLE_ADMIN') || authService.haveRole('ROLE_ORGANIZER'))" (click)="editTripDetails()">
                 Edit trip
             </button>
         </div>
     </mat-card-header>
     <mat-list>
+
         <h3 mat-subheader>Trip name</h3>
         <mat-list-item>
             <h4 mat-line>{{ trip.name }}</h4>
@@ -32,13 +33,41 @@
                 </mat-list-item>
             </div>
         </div>
+
+        <mat-divider *ngIf="getMyRequests().length !== 0"></mat-divider>
+
+        <mat-list *ngIf="getMyRequests().length !== 0">
+            <h3 mat-subheader>Pending requests</h3>
+
+            <mat-list-item *ngFor="let request of getMyRequests()">
+                <h3 matLine> {{request?.type}} </h3>
+                <div style="display: flex; margin-left: auto;">
+                    <button mat-raised-button
+                            color="primary"
+                            class="mr-2"
+                            (click)="acceptTripRequst(request)">
+                        Accept
+                    </button>
+                    <button mat-stroked-button
+                            style="color: red;"
+                            (click)="rejectTripRequest(request)">
+                        Reject
+                    </button>
+                </div>
+            </mat-list-item>
+        </mat-list>
+
         <mat-divider></mat-divider>
         <h3 mat-subheader>Employees</h3>
         <mat-list-item *ngFor="let account of trip?.accounts">
             <h4 mat-line>
-                {{ account.firstName }} {{ account.lastName }} - {{ account.email }}
+                {{ account?.firstName }} {{ account?.lastName }} - {{ account?.email }}
             </h4>
+            <mat-icon matSuffix *ngIf="getAccountStatus(account) === 'APPROVED'" style="color: green;">thumb_up</mat-icon>
+            <mat-icon matSuffix *ngIf="getAccountStatus(account) === 'PENDING'">loop</mat-icon>
+            <mat-icon matSuffix *ngIf="getAccountStatus(account) === 'DECLINED'" style="color: red">thumb_down</mat-icon>
         </mat-list-item>
+
         <mat-divider></mat-divider>
         <h3 mat-subheader>Checklist Items</h3>
         <mat-list-item *ngFor="let checklistItem of trip?.checklistItems">
@@ -47,22 +76,67 @@
 
         <h3 *ngIf="getMyRequests().length > 0">Nepriimti sprendimai</h3>
 
-        <div *ngFor="let request of getMyRequests()">
-            <div style="display: flex">
-                <div>Request type: {{ request?.type }}</div>
 
-                <div style="display: flex; margin-left: auto;">
-                    <button
-                            mat-raised-button
-                            color="primary"
-                            (click)="acceptTripRequst(request)">
-                        Accept
-                    </button>
-                    <button mat-stroked-button (click)="rejectTripRequest(request)">
-                        Reject
-                    </button>
-                </div>
-            </div>
-        </div>
     </mat-list>
+</mat-card>
+
+<mat-card class="example-card" *ngIf="possibleMerges && (authService.haveRole('ROLE_ADMIN') || authService.haveRole('ROLE_ORGANIZER'))">
+    <div class="d-flex align-items-center">
+        <div>
+          <h1>Possible merges</h1>
+        </div>
+      
+        <!-- <div class="ml-auto">
+          <button mat-raised-button color="primary" (click)="getCsvData()" class="mr-1">
+            Download data
+          </button>
+          <button mat-raised-button color="primary" routerLink="/my-trips/new" class="mr-1">
+            New trip
+          </button>
+          <button mat-raised-button (click)="mergeTrips()" color="primary">
+            Merge trips
+          </button>  </div> -->
+      </div>
+      
+      <table mat-table [dataSource]="possibleMerges">
+        <ng-container cdkColumnDef="name">
+          <mat-header-cell *cdkHeaderCellDef>
+            Trip name
+          </mat-header-cell>
+          <mat-cell *cdkCellDef="let row">
+            <a>{{ row?.name }}</a>
+          </mat-cell>
+        </ng-container>
+      
+        <ng-container cdkColumnDef="dateFrom">
+          <mat-header-cell *cdkHeaderCellDef> Date from</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">
+            {{ row?.dateFrom | date: longDate }}
+          </mat-cell>
+        </ng-container>
+      
+        <ng-container cdkColumnDef="dateTo">
+          <mat-header-cell *cdkHeaderCellDef> Date to</mat-header-cell>
+          <mat-cell *cdkCellDef="let row">
+            {{ row?.dateTo | date: longDate }}
+          </mat-cell>
+        </ng-container>
+      
+        <ng-container cdkColumnDef="number">
+          <mat-header-cell *cdkHeaderCellDef>
+            Number of employees
+          </mat-header-cell>
+          <mat-cell *cdkCellDef="let row"> {{ row?.accounts?.length }} </mat-cell>
+        </ng-container>
+      
+        <mat-header-row
+                *cdkHeaderRowDef="['name', 'dateFrom', 'dateTo', 'number']"></mat-header-row>
+        <mat-row
+                *cdkRowDef="let row; columns: ['name', 'dateFrom', 'dateTo', 'number']"
+                (click)="getSideBySideTrips(row.id)"></mat-row>
+      </table>
+      
+      <p class="no-trips" *ngIf="possibleMerges?.length === 0">
+        There are no possible merges
+      </p>
 </mat-card>

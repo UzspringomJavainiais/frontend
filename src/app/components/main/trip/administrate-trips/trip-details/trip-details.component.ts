@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TripService} from '../../../../../_services/trip.service';
 import {AuthService} from '../../../../../_services/auth.service';
+import {Trip} from '../../../../../models/trip';
 
 @Component({
     selector: 'app-trip-details',
@@ -9,7 +10,8 @@ import {AuthService} from '../../../../../_services/auth.service';
     styleUrls: ['./trip-details.component.css']
 })
 export class TripDetailsComponent implements OnInit {
-    public trip: any;
+    trip: any;
+    possibleMerges: Trip[];
 
     constructor(
         private route: ActivatedRoute,
@@ -23,6 +25,8 @@ export class TripDetailsComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.tripService.getTripById(+params.id).subscribe(data => {
                 this.trip = data;
+                console.log(this.trip);
+                this.getPossibleMerges();
             });
         });
 
@@ -32,7 +36,9 @@ export class TripDetailsComponent implements OnInit {
     }
 
     getMyRequests() {
-        if (!this.trip) { return []; }
+        if (!this.trip) {
+            return [];
+        }
         return this.trip.tripRequests.filter(request => request.account.email === this.authService.me.username && request.status === 'NEW');
     }
 
@@ -56,6 +62,29 @@ export class TripDetailsComponent implements OnInit {
 
     editTripDetails() {
         this.router.navigate(['/my-trips/edit', this.trip.id]);
+    }
+
+    getAccountStatus(account) {
+        const tripRequest = this.trip.tripRequests.filter(request => request.account.firstName + request.account.lastName === account.firstName + request.account.lastName);
+
+        const find = tripRequest.find(request => request.status === 'NEW' || request.status === 'DECLINED');
+        if (find && find.status && find.status === 'NEW') {
+            return 'PENDING';
+        } else if (find && find.status && find.status === 'DECLINED') {
+            return 'DECLINED';
+        } else {
+            return 'APPROVED';
+        }
+    }
+
+    getPossibleMerges() {
+        this.tripService.getPossibleMerges(this.trip.id).subscribe(trips => {
+            this.possibleMerges = trips;
+        });
+    }
+
+    getSideBySideTrips(id) {
+        this.router.navigate(['/merge-trips'], {queryParams: {tripId: this.trip.id, mergeId: id}});
     }
 
 }

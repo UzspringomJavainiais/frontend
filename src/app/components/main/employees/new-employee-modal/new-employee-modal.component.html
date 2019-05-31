@@ -1,5 +1,5 @@
 <div mat-dialog-title>
-    Darbuotojo pridėjimas
+    Add new employee
 </div>
 <form [formGroup]="addEmployeeForm">
 
@@ -7,33 +7,33 @@
         <mat-form-field class="w-100">
             <input matInput
                    type="text"
-                   placeholder="Darbuotojo vardas"
+                   placeholder="Employee name"
                    formControlName="firstName">
         </mat-form-field>
 
         <mat-form-field class="w-100">
             <input matInput
                    type="text"
-                   placeholder="Darbuotojo pavardė"
+                   placeholder="Employee last name"
                    formControlName="lastName">
         </mat-form-field>
 
         <mat-form-field class="w-100">
             <input matInput
                    type="password"
-                   placeholder="Slaptažodis"
+                   placeholder="Password"
                    formControlName="password">
         </mat-form-field>
 
         <mat-form-field class="w-100">
             <input matInput
                    type="email"
-                   placeholder="Elektroninis paštas"
+                   placeholder="Email"
                    formControlName="email">
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Rolės</mat-label>
+            <mat-label>Roles</mat-label>
             <mat-select formControlName="roles" multiple>
                 <mat-option *ngFor="let role of roles" [value]="role">{{role.name}}</mat-option>
             </mat-select>
@@ -46,8 +46,9 @@
         </button>
         <button mat-raised-button color="primary" style="margin-left: 1em" [disabled]="addEmployeeForm.invalid"
                 (click)="saveEmployee()">
-            Pridėti darbuotoją
+            Add employee
         </button>
     </div>
 </form>
 
+{{addEmployeeForm.value | json}}

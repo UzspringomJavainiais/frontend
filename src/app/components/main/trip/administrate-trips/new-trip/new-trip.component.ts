@@ -8,6 +8,7 @@ import { FileUploader, FileItem } from 'ng2-file-upload';
 import { Observable, of, forkJoin } from 'rxjs';
 import { Employee, SortableEmployee } from 'src/app/models/Employee';
 import * as moment from 'moment';
+import { ApartmentService } from 'src/app/_services/apartment.service';
 
 @Component({
     selector: 'app-new-trip',
@@ -16,6 +17,9 @@ import * as moment from 'moment';
 })
 export class NewTripComponent implements OnInit {
     public employees: SortableEmployee[];
+    apartments: any;
+    from: any;
+    to: any;
 
     item: any = {name: null, isChecked: null, price: null};
 
@@ -31,7 +35,8 @@ export class NewTripComponent implements OnInit {
     constructor(private tripService: TripService,
                 private employeeService: EmployeeService,
                 private router: Router,
-                private fb: FormBuilder) {
+                private fb: FormBuilder,
+                private apartmentService: ApartmentService) {
 
         this.tripForm = this.fb.group({
             name: ['', Validators.required],
@@ -39,8 +44,8 @@ export class NewTripComponent implements OnInit {
             dateFrom: new Date(),
             dateTo: new Date(),
             accounts: this.fb.array([]),
-            checklistItems: this.fb.array([]),
-            document: [null, null],
+            from: '',
+            to: ''
         });
 
         this.checklistItemsList = this.tripForm.get('checklistItems') as FormArray;
@@ -123,9 +128,12 @@ export class NewTripComponent implements OnInit {
     }
 
     isPreviousDate(date: Date): boolean {
+        const someDate = new Date(date);
         const yesterday = new Date();
         yesterday.setDate(yesterday.getDate() - 1);
-        return yesterday.getTime() <= date.getTime();
+        console.log(yesterday.getTime());
+        console.log(someDate.getTime());
+        return yesterday.getTime() <= someDate.getTime();
     }
 
     busyDateClassSelector(employee: SortableEmployee): (date: Date) => string {
