@@ -47,7 +47,7 @@ export class TripDetailsComponent implements OnInit {
             .subscribe(data => {
                 console.log('accepted');
                 this.tripService.getTripRequests();
-                this.router.navigate(['/trips']);
+                this.router.navigate(['/my-trips']);
             });
     }
 
