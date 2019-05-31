@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container > * {
+  width: 100%;
+}
+
+/* .input-block {
+  display: flex;
+} */
+
+mat-form-field {
+  margin: 10px;
+}
+
+h4 {
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+}
+
+.add-checklistitem {
+  display: block;
+  width: 50%;
+  align-items: left;
+}
+
+.add-item {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.add-checklistitem > * {
+  flex-grow: 1;
+}
+
+.hidden-file-input {
+  width: 0px; 
+  height: 0px; 
+  visibility: hidden;
+}
+
+.attachment-action-button {
+  width: 20px; 
+  height: 40px;
+}

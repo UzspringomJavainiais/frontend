@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {Employee} from '../models/Employee';
@@ -12,8 +12,10 @@ export class EmployeeService {
     constructor(private http: HttpClient) {
     }
 
-    getAllEmployees(): Observable<Employee[]> {
-        return this.http.get<Employee[]>(`${environment.apiUrl}api/account`);
+    getAllEmployees(includeBusyDays = false): Observable<Employee[]> {
+        let params = new HttpParams();
+        params = params.append('includeBusyDays', `${includeBusyDays}`);
+        return this.http.get<Employee[]>(`${environment.apiUrl}api/account`, { params } );
     }
 
     saveEmployees(employee) {
