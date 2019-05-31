@@ -4,6 +4,7 @@ import {Trip} from '../../../../../models/trip';
 import {EmployeeService} from 'src/app/_services/employee.service';
 import {Router} from '@angular/router';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { ApartmentService } from 'src/app/_services/apartment.service';
 
 @Component({
     selector: 'app-new-trip',
@@ -12,6 +13,9 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class NewTripComponent implements OnInit {
     public employees;
+    apartments: any;
+    from: any;
+    to: any;
 
     item: any = {name: null, isChecked: null, price: null};
 
@@ -22,7 +26,8 @@ export class NewTripComponent implements OnInit {
     constructor(private tripService: TripService,
                 private employeeService: EmployeeService,
                 private router: Router,
-                private fb: FormBuilder) {
+                private fb: FormBuilder,
+                private apartmentService: ApartmentService) {
 
         this.tripForm = this.fb.group({
                 name: '',
@@ -30,7 +35,9 @@ export class NewTripComponent implements OnInit {
                 dateFrom: new Date(),
                 dateTo: new Date(),
                 accounts: this.fb.array([]),
-                checklistItems: this.fb.array([])
+                checklistItems: this.fb.array([]),
+                from: '',
+                to: ''
             },
         );
 
@@ -57,6 +64,10 @@ export class NewTripComponent implements OnInit {
             .subscribe(data => {
                 this.employees = data;
             });
+
+        this.apartmentService.getAllApartments().subscribe(apartments => {
+            this.apartments = apartments;
+        })
     }
 
     checkEmployees() {
@@ -72,10 +83,12 @@ export class NewTripComponent implements OnInit {
     onSubmit() {
         const dto = this.tripForm.value;
 
+        console.log(this.tripForm.value);
+
         this.tripService.createTrip(dto)
             .subscribe(data => {
                 this.tripService.getTripRequests();
-                this.router.navigateByUrl('');
+                this.router.navigateByUrl('administrate-trips');
             });
     }
 

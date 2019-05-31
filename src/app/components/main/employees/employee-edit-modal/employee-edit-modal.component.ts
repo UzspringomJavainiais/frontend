@@ -26,7 +26,6 @@ export class EmployeeEditModalComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.selectedEmployee);
         this.editEmployeeForm = this.fb.group({
             id: [this.selectedEmployee.id],
             firstName: [this.selectedEmployee.firstName, Validators.required],
