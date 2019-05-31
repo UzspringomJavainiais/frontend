@@ -83,6 +83,10 @@ export class NewTripComponent implements OnInit {
         .subscribe(data => {
             this.employees = data.map(e => new SortableEmployee(e));
         });
+
+        this.apartmentService.getAllApartments().subscribe(apartments => {
+            this.apartments = apartments;
+        });
     }
 
     async onSubmit() {
