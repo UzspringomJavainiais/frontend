@@ -31,6 +31,9 @@ import {MyTripsComponent} from './components/main/trip/my-trips/my-trips.compone
 import {EditTripComponent} from './components/main/trip/administrate-trips/edit-trip/edit-trip.component';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DIALOG_DEFAULT_OPTIONS, NativeDateAdapter} from '@angular/material';
 import { AllTripsComponent } from './components/main/trip/administrate-trips/all-trips/all-trips.component';
+import { FileUploadModule } from 'ng2-file-upload';
+import { AddAttachmentsComponent } from './components/main/trip/administrate-trips/new-trip/add-attachments/add-attachments.component';
+import { SortByPipe } from './utils/sort-by.pipe';
 import { MergeTripsComponent } from './components/main/trip/administrate-trips/trip-details/merge-trips/merge-trips.component';
 import {MomentUtcDateAdapter} from './_adapters/AppDateAdapter';
 import {MAT_MOMENT_DATE_FORMATS} from '@angular/material-moment-adapter';
@@ -84,6 +87,7 @@ export const APP_DATE_FORMATS = {
         StatisticsComponent,
         NewTripComponent,
         NewRoleModalComponent,
+        AddAttachmentsComponent,
         AuthComponent,
         LoginComponent,
         RegisterComponent,
@@ -94,6 +98,8 @@ export const APP_DATE_FORMATS = {
         EditTripComponent,
         AllTripsComponent,
         AdministrateTripsComponent,
+        
+        SortByPipe,
         MergeTripsComponent
     ],
     imports: [
@@ -105,7 +111,8 @@ export const APP_DATE_FORMATS = {
         HttpClientModule,
         ReactiveFormsModule,
         FormsModule,
-        ChartsModule
+        ChartsModule,
+        FileUploadModule,
     ],
     providers: [
         CookieService,

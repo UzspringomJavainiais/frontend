@@ -74,28 +74,14 @@
             <h4 mat-line>{{ checklistItem.name }} - {{ checklistItem.price }} €</h4>
         </mat-list-item>
 
-        <h3 *ngIf="getMyRequests().length > 0">Nepriimti sprendimai</h3>
-
-
     </mat-list>
 </mat-card>
 
-<mat-card class="example-card" *ngIf="possibleMerges && (authService.haveRole('ROLE_ADMIN') || authService.haveRole('ROLE_ORGANIZER'))">
+<mat-card class="example-card mt-5" *ngIf="possibleMerges && (authService.haveRole('ROLE_ADMIN') || authService.haveRole('ROLE_ORGANIZER'))">
     <div class="d-flex align-items-center">
         <div>
           <h1>Possible merges</h1>
         </div>
-      
-        <!-- <div class="ml-auto">
-          <button mat-raised-button color="primary" (click)="getCsvData()" class="mr-1">
-            Download data
-          </button>
-          <button mat-raised-button color="primary" routerLink="/my-trips/new" class="mr-1">
-            New trip
-          </button>
-          <button mat-raised-button (click)="mergeTrips()" color="primary">
-            Merge trips
-          </button>  </div> -->
       </div>
       
       <table mat-table [dataSource]="possibleMerges">

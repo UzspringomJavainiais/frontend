@@ -16,7 +16,7 @@ export class TripDetailsComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private tripService: TripService,
-        private authService: AuthService,
+        public authService: AuthService,
         private router: Router
     ) {
     }
@@ -60,7 +60,7 @@ export class TripDetailsComponent implements OnInit {
             });
     }
 
-    editTripDetails = () => {
+    editTripDetails() {
         this.router.navigate(['/my-trips/edit', this.trip.id]);
     }
 

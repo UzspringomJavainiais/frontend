@@ -1,0 +1,62 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>Add attachments</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="tripForm">
+        <mat-card-content>
+            <h4>Checklist items</h4>
+            <mat-list formArrayName="checklistItems">
+                <mat-list-item *ngFor="let item of checklistItemsList.controls; let i = index;">
+                    <h4 matLine>{{ item.value.name }}</h4>
+                    <p matLine>Price: {{ item.value.price }}</p>
+                    <div matLine>
+                        <span class="ml-1">{{ item.value.attachment?.name }}</span>
+                        <button *ngIf="item.value.attachment?.name" mat-stroked-button (click)="removeAddedAttachment(i)" color="primary" class="attachment-action-button ml-1">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div>
+                </mat-list-item>
+
+                <mat-list-item *ngIf="checklistItemsList?.controls?.length === 0">
+                    There is no checklist items. Add one.
+                </mat-list-item>
+            </mat-list>
+        </mat-card-content>
+    </form>
+
+    <div class="add-item">
+        <div class="add-checklistitem">
+            <mat-form-field>
+                <div class="input-block">
+                    <input [(ngModel)]="item.name"
+                        matInput
+                        placeholder="New item"/>
+                </div>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput
+                    maxlength="9"
+                    placeholder="Price"
+                    type="number"
+                    [(ngModel)]="item.price"/>
+            </mat-form-field>
+        </div>
+        <div class="add-checklistitem">
+            <button mat-stroked-button (click)="addNewItem()" color="primary" class="attachment-action-button mr-1">
+                <i class="material-icons">add</i>
+            </button>
+            <button mat-stroked-button (click)="attachmentsUpload.click()" color="primary" class="attachment-action-button">
+                <i class="material-icons">attach_file</i>
+                <input #attachmentsUpload class="hidden-file-input" (change)="onFileSelected($event.target.files)" type="file" accept=".png,.jpg,.jpeg,.pdf,.docx,.doc"/>
+            </button>
+            <span class="ml-1">{{ item.attachment?.name }}</span>
+            <button *ngIf="item.attachment?.name" mat-stroked-button (click)="removeAttachment()" color="primary" class="attachment-action-button ml-1">
+                <i class="material-icons">delete</i>
+            </button>
+        </div>
+    </div>
+
+    <mat-card-actions style="display: flex; justify-content: flex-end">
+        <button mat-raised-button color="primary" (click)="onSubmit(); $event.preventDefault()">Submit</button>
+    </mat-card-actions>
+</mat-card>
