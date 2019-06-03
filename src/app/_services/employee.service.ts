@@ -20,6 +20,10 @@ export class EmployeeService {
         return this.http.post(`${environment.apiUrl}api/account`, employee);
     }
 
+    deleteEmployee(id) {
+        return this.http.delete(`${environment.apiUrl}api/account/${id}`);
+    }
+
     getMyTrips(employeeId) {
         return this.http.get(`${environment.apiUrl}api/account/${employeeId}/trips`);
     }

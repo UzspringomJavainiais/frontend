@@ -47,6 +47,13 @@ export class EmployeeEditModalComponent implements OnInit {
             });
     }
 
+    deleteEmployee() {
+        this.employeeService.deleteEmployee(this.selectedEmployee.id).subscribe(data => {
+            console.log(data);
+            this.dialogRef.close();
+        })
+    }
+
     private getRoles() {
         this.roleService.getAllRoles()
             .subscribe(data => {
