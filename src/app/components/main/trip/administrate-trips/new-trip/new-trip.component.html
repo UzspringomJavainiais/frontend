@@ -47,6 +47,7 @@
                 <mat-option
                     *ngFor="let apartment of apartments"
                     [value]="apartment.id"
+                    [disabled]="apartment.id === tripForm.value.to"
                 >
                     {{ apartment.location.name }} rooms: {{ apartment.rooms.length }} -
                     {{ apartment.location.address }}, {{ apartment.location.city }},
@@ -62,6 +63,7 @@
                 <mat-option
                     *ngFor="let apartment of apartments"
                     [value]="apartment.id"
+                    [disabled]="apartment.id === tripForm.value.from"
                 >
                     {{ apartment.location.name }} rooms: {{ apartment.rooms.length }} -
                     {{ apartment.location.address }}, {{ apartment.location.city }},

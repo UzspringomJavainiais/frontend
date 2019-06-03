@@ -76,23 +76,24 @@ export class TripService {
         });
     }
 
-    uploadTripFile(tripId: number, checkListItemWithAttachment: CheckListItemWithAttachment): Observable<any> {
+    uploadTripFile(tripId: number, checkListItemWithAttachment: CheckListItemWithAttachment, fila): Observable<any> {
 
-        return this.fileToString(checkListItemWithAttachment.attachment)
-        .pipe(
-            map((fileAsString) => {
-                return this.http.post<any>(`${environment.apiUrl}api/checklist-item`, {
-                    name: checkListItemWithAttachment.name,
-                    price: checkListItemWithAttachment.price,
-                    tripId: tripId,
-                    checked: checkListItemWithAttachment.attachment !== null,
-                    attachment: {
-                        fileName: checkListItemWithAttachment.attachment.name,
-                        fileData: fileAsString,
-                    }
-                });
-            })
-        );
+        // return this.fileToString(checkListItemWithAttachment.attachment)
+        // .pipe(
+        //     map((fileAsString) => {
+
+        return this.http.post<any>(`${environment.apiUrl}api/checklist-item`, {
+            name: checkListItemWithAttachment.name,
+            price: checkListItemWithAttachment.price,
+            tripId: tripId,
+            checked: checkListItemWithAttachment.attachment !== null,
+            // attachment: {
+            //     // fileName: checkListItemWithAttachment.attachment.name,
+            //     // fileData: fila,
+            // }
+        });
+        //     })
+        // );
     }
 
     private fileToString(file: File): Observable<string> {
@@ -110,5 +111,5 @@ export class TripService {
                 r.readAsText(file);
             }
         );
-    } //
+    }
 }

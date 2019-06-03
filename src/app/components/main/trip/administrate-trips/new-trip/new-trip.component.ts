@@ -92,11 +92,10 @@ export class NewTripComponent implements OnInit {
     async onSubmit() {
         if (this.tripForm.valid && !this.employees.some(e => !this.isEmployeeFree(e) && e.isChecked)) {
             const dto = this.tripForm.value;
-
             this.tripService.createTrip(dto)
             .subscribe(trip => {
                 this.tripService.getTripRequests();
-                this.router.navigate(['/my-trips/add-attachments', trip.id]);
+                this.router.navigate(['/my-trips/add-attachments', trip.tripId]);
             });
         }
     }
@@ -135,8 +134,6 @@ export class NewTripComponent implements OnInit {
         const someDate = new Date(date);
         const yesterday = new Date();
         yesterday.setDate(yesterday.getDate() - 1);
-        console.log(yesterday.getTime());
-        console.log(someDate.getTime());
         return yesterday.getTime() <= someDate.getTime();
     }
 

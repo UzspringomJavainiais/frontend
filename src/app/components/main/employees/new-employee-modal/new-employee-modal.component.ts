@@ -3,6 +3,7 @@ import {ApartmentService} from '../../../../_services/apartment.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EmployeeService} from '../../../../_services/employee.service';
 import {RoleService} from '../../../../_services/role.service';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
     selector: 'app-new-employee-modal',
@@ -15,7 +16,8 @@ export class NewEmployeeModalComponent implements OnInit {
 
     constructor(private employeeService: EmployeeService,
                 private fb: FormBuilder,
-                private roleService: RoleService) {
+                private roleService: RoleService,
+                public dialogRef: MatDialogRef<NewEmployeeModalComponent>) {
     }
 
     ngOnInit() {
@@ -35,7 +37,7 @@ export class NewEmployeeModalComponent implements OnInit {
         employee.roleIds = employee.roles.map(role => role.id);
         console.log('pridedamas: ', employee);
         this.employeeService.saveEmployees(employee)
-            .subscribe(data => console.log('saved employee'));
+            .subscribe(data => this.dialogRef.close());
     }
 
     private getRoles() {

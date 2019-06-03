@@ -60,16 +60,42 @@ export class AddAttachmentsComponent implements OnInit {
     }
 
     onSubmit() {
-        of(this.checklistItemsList.value.map((item) => {
-            return this.tripService.uploadTripFile(this.tripId, item).subscribe(
-                (response) => {},
+        // of(this.checklistItemsList.value.map((item) => {
+        //     return this.tripService.uploadTripFile(this.tripId, item).subscribe(
+        //         (response) => {},
+        //         (error) => {
+        //             console.error(error)
+        //         });
+        // }))
+
+
+        const r = new FileReader();
+        // if success
+        r.onload = (ev: ProgressEvent): void => {
+            console.log("pizda");
+            this.tripService.uploadTripFile(this.tripId, this.checklistItemsList.value[0], (ev.target as any).result).subscribe(
+                (response) => {
+                    console.log(JSON.stringify(response, null, "    "));
+                    this.router.navigate(['/administrate-trips']);
+                },
                 (error) => {
                     console.error(error)
                 });
-        }))
-        .subscribe(response => {
-            this.router.navigate(['/administrate-trips']);
-        });
+        };
+        // if failed
+        r.onerror = (ev): void => {
+
+        };
+        console.log(this.checklistItemsList.value[0]);
+        console.log("=========");
+        r.readAsText(this.checklistItemsList.value[0].attachment);
+
+
+
+
+        // .subscribe(response => {
+        //     this.router.navigate(['/administrate-trips']);
+        // });
     }
 
     addNewItem() {

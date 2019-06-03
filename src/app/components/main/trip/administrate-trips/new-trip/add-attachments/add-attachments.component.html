@@ -11,10 +11,10 @@
                     <p matLine>Price: {{ item.value.price }}</p>
                     <div matLine>
                         <span class="ml-1">{{ item.value.attachment?.name }}</span>
-                        <button *ngIf="item.value.attachment?.name" mat-stroked-button (click)="removeAddedAttachment(i)" color="primary" class="attachment-action-button ml-1">
-                            <i class="material-icons">delete</i>
-                        </button>
                     </div>
+                    <button *ngIf="item.value.attachment?.name" mat-stroked-button (click)="removeAddedAttachment(i)" color="primary" class="attachment-action-button ml-1">
+                        <i class="material-icons">delete</i>
+                    </button>
                 </mat-list-item>
 
                 <mat-list-item *ngIf="checklistItemsList?.controls?.length === 0">
