@@ -26,6 +26,7 @@ export class EmployeeEditModalComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log(this.selectedEmployee);
         this.editEmployeeForm = this.fb.group({
             id: [this.selectedEmployee.id],
             firstName: [this.selectedEmployee.firstName, Validators.required],
@@ -39,6 +40,8 @@ export class EmployeeEditModalComponent implements OnInit {
 
     saveEmployee() {
         const employee = this.editEmployeeForm.value;
+        employee.roleIds = employee.roles.map(role => role.id);
+
         this.employeeService
             .editEmployee(employee)
             .subscribe(data => {
@@ -51,14 +54,14 @@ export class EmployeeEditModalComponent implements OnInit {
         this.employeeService.deleteEmployee(this.selectedEmployee.id).subscribe(data => {
             console.log(data);
             this.dialogRef.close();
-        })
+        });
     }
 
     private getRoles() {
         this.roleService.getAllRoles()
             .subscribe(data => {
                 this.roles = data;
-                this.editEmployeeForm.patchValue({roles: data});
+                this.editEmployeeForm.patchValue({roles: this.roles.filter(role => this.selectedEmployee.roleIds.find(id => id == role.id))});
             });
     }
 }

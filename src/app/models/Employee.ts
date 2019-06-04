@@ -5,6 +5,7 @@ export interface Employee {
   lastName: string;
   password: string;
   calendarEntries?: CalendarEntry[];
+  roleIds?: number[];
 }
 
 export class SortableEmployee implements Employee {
