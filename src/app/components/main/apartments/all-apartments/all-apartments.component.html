@@ -9,13 +9,18 @@
 </div>
 
 <table mat-table [dataSource]="apartments">
-    <ng-container cdkColumnDef="name">
-        <mat-header-cell *cdkHeaderCellDef> Name</mat-header-cell>
+    <ng-container cdkColumnDef="office">
+        <mat-header-cell *cdkHeaderCellDef> Office</mat-header-cell>
         <mat-cell *cdkCellDef="let row">{{ row?.name }}</mat-cell>
     </ng-container>
 
+    <ng-container cdkColumnDef="name">
+        <mat-header-cell *cdkHeaderCellDef> Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let row">{{ row?.location?.name }}</mat-cell>
+    </ng-container>
+
     <ng-container cdkColumnDef="address">
-        <mat-header-cell *cdkHeaderCellDef> Adress</mat-header-cell>
+        <mat-header-cell *cdkHeaderCellDef> Address</mat-header-cell>
         <mat-cell *cdkCellDef="let row">{{ row?.location?.address}}</mat-cell>
     </ng-container>
 
@@ -27,9 +32,9 @@
     </ng-container>
 
     <mat-header-row
-            *cdkHeaderRowDef="['name', 'address', 'numberOfRooms']"></mat-header-row>
+            *cdkHeaderRowDef="['office', 'name', 'address', 'numberOfRooms']"></mat-header-row>
     <mat-row
-            *cdkRowDef="let row; columns: ['name', 'address', 'numberOfRooms']"></mat-row>
+            *cdkRowDef="let row; columns: ['office', 'name', 'address', 'numberOfRooms']"></mat-row>
 </table>
 
 
